@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace CoreEssentials.Hero.API.Controllers
+namespace AspNetCoreHero.Boilerplate.API.Controllers
 {
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]

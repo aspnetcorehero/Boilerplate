@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.Boilerplate.Web.Extensions;
 
 namespace AspNetCoreHero.Boilerplate.Web
 {
@@ -20,6 +21,7 @@ namespace AspNetCoreHero.Boilerplate.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddNotyf(o=> { o.DurationInSeconds = 10; });
+            services.AddMultiLingualSupport();
             services.AddControllersWithViews();
         }
 
