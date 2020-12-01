@@ -12,10 +12,10 @@ namespace AspNetCoreHero.Boilerplate.Web
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration _configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -26,6 +26,7 @@ namespace AspNetCoreHero.Boilerplate.Web
                 o.IsDismissable = true;
                 o.HasRippleEffect = true;
             });
+            services.AddInfrastructure(_configuration);
             services.AddMultiLingualSupport();
             services.AddControllersWithViews();
         }
@@ -47,11 +48,11 @@ namespace AspNetCoreHero.Boilerplate.Web
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

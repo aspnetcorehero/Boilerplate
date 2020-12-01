@@ -56,7 +56,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
             response.IsVerified = user.EmailConfirmed;
             var refreshToken = GenerateRefreshToken(ipAddress);
             response.RefreshToken = refreshToken.Token;
-            return Result<TokenResponse>.Success(response);
+            return Result<TokenResponse>.Success(response,"Authenticated");
         }
         private async Task<JwtSecurityToken> GenerateJWToken(ApplicationUser user, string ipAddress)
         {
@@ -73,9 +73,9 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("uid", user.Id),
-                 new Claim("first_name", user.FirstName),
-                  new Claim("last_name", user.LastName),
-                   new Claim("full_name", $"{user.FirstName} {user.LastName}"),
+                new Claim("first_name", user.FirstName),
+                new Claim("last_name", user.LastName),
+                new Claim("full_name", $"{user.FirstName} {user.LastName}"),
                 new Claim("ip", ipAddress)
             }
             .Union(userClaims)

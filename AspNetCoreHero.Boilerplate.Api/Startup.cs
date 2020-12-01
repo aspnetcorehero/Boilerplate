@@ -1,4 +1,5 @@
 using AspNetCoreHero.Boilerplate.Api.Extensions;
+using AspNetCoreHero.Boilerplate.Api.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,6 +43,8 @@ namespace AspNetCoreHero.Boilerplate.Api
             }
             app.ConfigureSwagger();
             app.UseHttpsRedirection();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseRouting();
 
             app.UseRouting();
 

@@ -1,0 +1,121 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResource> localizer
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewData["Title"]</title>
+    <partial name="_Styles" />
+</head>
+<body>
+    <nav id="navigationBar" class="main-header navbar navbar-expand navbar-light" style="margin:0 !important">
+        <ul class="navbar-nav" style=" margin-inline-start: auto; ">
+        </ul>
+        <ul class="navbar-nav">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="darkSwitch">
+                <label class="custom-control-label" style="font-weight:400" for="darkSwitch">@localizer["Dark Mode"]</label>
+            </div>
+        </ul>
+
+    </nav>
+    <div class="content-wrapper mrl-zero" id="contentWrapper">
+        <div class="container">
+
+            <!-- Outer Row -->
+            <div class="row justify-content-center">
+
+                <div class="col-xl-10 col-lg-12 col-md-9">
+
+                    <div class="card o-hidden border-0 my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-block" style=" background: url('/images/bg-login.jpg');background-position: center;background-size: cover;"></div>
+                                <div class="col-lg-6">
+                                    <div style="padding:10rem 3rem 10rem 3rem !important;">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">@localizer["Login"]</h1>
+                                        </div>
+                                        <form class="user" id="account" method="post">
+                                            <div class="form-group">
+                                                <input asp-for="Input.Email" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                                <small><span asp-validation-for="Input.Email" class="text-danger"></span></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <input asp-for="Input.Password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                                <small><span asp-validation-for="Input.Password" class="text-danger"></span></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox small">
+                                                    <input asp-for="Input.RememberMe" type="checkbox" class="custom-control-input" id="customCheck">
+                                                    <label class="custom-control-label" for="customCheck">@localizer["Remember Me"]</label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                @localizer["Login"]
+                                            </button>
+                                            @*<hr>
+                                                <a class="btn btn-google btn-user btn-block">
+                                                    <i class="fab fa-google fa-fw"></i> Login with Google
+                                                </a>
+                                                <a class="btn btn-facebook btn-user btn-block">
+                                                    <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                                </a>*@
+                                        </form>
+                                        <hr>
+                                        <div class="text-center">
+                                            <a asp-area="Identity" asp-page="/Account/forgotpassword" class="small">@localizer["Forgot Password?"]</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a asp-area="Identity" asp-page="/Account/register" class="small">@localizer["Create an Account!"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-12 col-md-9">
+                    <div class="card">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 text-secondary">@localizer["Default Credentials"]</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col">
+                                    <b>Super Admin : </b> superadmin@gmail.com / 123Pa$$word! / Default
+                                    <br />
+                                    <b>Basic User : </b> basicuser@gmail.com / 123Pa$$word! / Default
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <partial name="_Scripts" />
+
+</body>
+
+</html>
+@await Component.InvokeAsync("Notyf")
