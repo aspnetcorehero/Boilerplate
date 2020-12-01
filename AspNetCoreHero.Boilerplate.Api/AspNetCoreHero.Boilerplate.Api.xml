@@ -4,5 +4,12 @@
         <name>AspNetCoreHero.Boilerplate.Api</name>
     </assembly>
     <members>
+        <member name="M:AspNetCoreHero.Boilerplate.Api.Controllers.IdentityController.GetTokenAsync(AspNetCoreHero.Boilerplate.Application.DTOs.Identity.TokenRequest)">
+            <summary>
+            Generates a JSON Web Token for a valid combination of emailId and password.
+            </summary>
+            <param name="tokenRequest"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

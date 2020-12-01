@@ -20,7 +20,12 @@ namespace AspNetCoreHero.Boilerplate.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddNotyf(o=> { o.DurationInSeconds = 10; });
+            services.AddNotyf(o=> 
+            { 
+                o.DurationInSeconds = 10;
+                o.IsDismissable = true;
+                o.HasRippleEffect = true;
+            });
             services.AddMultiLingualSupport();
             services.AddControllersWithViews();
         }
