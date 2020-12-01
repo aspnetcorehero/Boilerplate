@@ -18,7 +18,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
 
         public IActionResult Index()
         {
-            _notyf.Success("Welcome Home!");
             return View();
         }
 

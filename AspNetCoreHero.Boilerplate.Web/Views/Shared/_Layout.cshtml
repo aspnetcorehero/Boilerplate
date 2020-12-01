@@ -2,6 +2,7 @@
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Title;
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Sidebar;
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Header;
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Logout;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +29,7 @@
             </div>
         </div>
         @(await Component.InvokeAsync<FooterViewComponent>())
+        @(await Component.InvokeAsync<LogoutViewComponent>())
         @*<partial name="AdminLTE/_LogoutModal" />
             <partial name="AdminLTE/Modals/_FormModal" />
             <partial name="AdminLTE/_ImageModal" />*@

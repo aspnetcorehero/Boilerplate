@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Header
+namespace AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Logout
 {
-    public class HeaderViewComponent : ViewComponent
+    public class LogoutViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

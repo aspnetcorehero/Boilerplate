@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
+using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -16,7 +17,7 @@ using System.Threading.Tasks;
 namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class LoginModel : PageModel
+    public class LoginModel : BasePageModel<LoginModel>
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -24,11 +25,9 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
 
         public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager,
-            INotyfService notyf)
+            UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            _notyf = notyf;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -42,7 +41,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
 
         [TempData]
         public string ErrorMessage { get; set; }
-        public INotyfService _notyf { get; set; }
 
         public class InputModel
         {
