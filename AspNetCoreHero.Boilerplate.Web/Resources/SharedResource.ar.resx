@@ -150,6 +150,9 @@
   <data name="Logout" xml:space="preserve">
     <value>تسجيل خروج</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>جديد</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>كلمه السر</value>
   </data>

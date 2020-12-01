@@ -2,6 +2,7 @@
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Culture;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IHtmlLocalizer<SharedResource> localizer
 <nav id="navigationBar" class="main-header navbar navbar-expand navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -59,7 +60,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
+                        @localizer["Logout"]
                     </a>
                 </div>
             </li>

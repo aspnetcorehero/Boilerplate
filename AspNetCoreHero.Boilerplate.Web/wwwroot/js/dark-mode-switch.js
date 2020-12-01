@@ -35,6 +35,7 @@ function initTheme() {
         $('.form-control').attr('style', 'background-color: #212121!important;color:white;border:1px solid #3c3c3c');
         $('.modal-content').attr('style', 'background-color: #212121!important;');
         $('.loader-section').attr('style', 'background: #212121!important;');
+        $("#brand-logo").attr("src", "/images/logo-transparent-light.png");
         //.form-control
     }
     else {
@@ -47,6 +48,7 @@ function initTheme() {
         $('.form-control').attr('style', 'background-color: #ffffff!important;color:black;border:1px solid #ced4da');
         $('.modal-content').attr('style', 'background-color: #ffffff!important;');
         $('.loader-section').attr('style', 'background: #ffffff!important;');
+        $("#brand-logo").attr("src", "/images/logo-transparent-dark.png");
     }
     
 }
@@ -69,6 +71,7 @@ function resetTheme() {
       $('.form-control').attr('style', 'background-color: #212121!important;color:white;border:1px solid #3c3c3c');
       $('.modal-content').attr('style', 'background-color: #212121!important;');
       $('.loader-section').attr('style', 'background: #212121!important;');
+      $("#brand-logo").attr("src", "/images/logo-transparent-light.png");
     localStorage.setItem('darkSwitch', 'dark');
   } else {
       document.body.removeAttribute('data-theme');
@@ -80,6 +83,7 @@ function resetTheme() {
       $('.form-control').attr('style', 'background-color: #ffffff!important;color:black;border:1px solid #ced4da');
       $('.modal-content').attr('style', 'background-color: #ffffff!important;');
       $('.loader-section').attr('style', 'background: #ffffff!important;');
+      $("#brand-logo").attr("src", "/images/logo-transparent-dark.png");
     localStorage.removeItem('darkSwitch');
   }
 }
