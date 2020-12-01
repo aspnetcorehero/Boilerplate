@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = Localizer.GetString(c.NativeName) })
+        .ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
+}
+
+<div title="@Localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
+
+    <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+            @if (requestCulture != null)
+            {
+                @if (requestCulture.RequestCulture.UICulture.Name == "en")
+                {
+                    <i class="flag-icon flag-icon-gb"></i>
+                }
+                else if (requestCulture.RequestCulture.UICulture.Name == "ar")
+                {
+                    <i class="flag-icon flag-icon-sa"></i>
+                }
+                else if (requestCulture.RequestCulture.UICulture.Name == "fr")
+                {
+                    <i class="flag-icon flag-icon-fr"></i>
+                }
+                @requestCulture.RequestCulture.UICulture.NativeName
+            }
+
+        </span>
+    </a>
+    <!-- Dropdown - User Information -->
+    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+        @foreach (var culture in cultureItems)
+        {
+
+            <form style="padding:0px!important"
+                  asp-controller="Culture"
+                  asp-action="SetCulture"
+                  asp-route-returnUrl="@returnUrl"
+                  asp-route-culture="@culture.Value"
+                  method="post"
+                  class="form-horizontal"
+                  role="form">
+                <button type="submit" class="dropdown-item">
+                    @if (culture.Value == "en" || culture.Value == "en-US")
+                    {
+                        <i class="flag-icon flag-icon-gb"></i>
+                    }
+                    else if (culture.Value == "ar")
+                    {
+                        <i class="flag-icon flag-icon-sa"></i>
+                    }
+                    else if (culture.Value == "fr")
+                    {
+                        <i class="flag-icon flag-icon-fr"></i>
+                    }
+
+                    @culture.Text
+                </button>
+
+            </form>
+        }
+
+    </div>
+</div>

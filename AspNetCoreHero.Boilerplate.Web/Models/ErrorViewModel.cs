@@ -1,5 +1,3 @@
-using System;
-
 namespace AspNetCoreHero.Boilerplate.Web.Models
 {
     public class ErrorViewModel

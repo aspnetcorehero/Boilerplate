@@ -1,10 +1,10 @@
+using AspNetCoreHero.Boilerplate.Web.Extensions;
+using AspNetCoreHero.ToastNotification;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AspNetCoreHero.ToastNotification;
-using AspNetCoreHero.Boilerplate.Web.Extensions;
 
 namespace AspNetCoreHero.Boilerplate.Web
 {
@@ -20,8 +20,8 @@ namespace AspNetCoreHero.Boilerplate.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddNotyf(o=> 
-            { 
+            services.AddNotyf(o =>
+            {
                 o.DurationInSeconds = 10;
                 o.IsDismissable = true;
                 o.HasRippleEffect = true;
@@ -46,7 +46,8 @@ namespace AspNetCoreHero.Boilerplate.Web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCookiePolicy();
+            app.UseMultiLingualFeature();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

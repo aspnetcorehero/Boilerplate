@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Title
+namespace AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Culture
 {
-    public class TitleViewComponent : ViewComponent
+    public class CultureViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

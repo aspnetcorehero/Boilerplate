@@ -56,7 +56,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
             response.IsVerified = user.EmailConfirmed;
             var refreshToken = GenerateRefreshToken(ipAddress);
             response.RefreshToken = refreshToken.Token;
-            return Result<TokenResponse>.Success(response,"Authenticated");
+            return Result<TokenResponse>.Success(response, "Authenticated");
         }
         private async Task<JwtSecurityToken> GenerateJWToken(ApplicationUser user, string ipAddress)
         {
