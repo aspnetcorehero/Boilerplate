@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Infrastructure.Shared\AspNetCoreHero.Boilerplate.Infrastructure.Shared.csproj" />
     <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Infrastructure\AspNetCoreHero.Boilerplate.Infrastructure.csproj" />
   </ItemGroup>
 

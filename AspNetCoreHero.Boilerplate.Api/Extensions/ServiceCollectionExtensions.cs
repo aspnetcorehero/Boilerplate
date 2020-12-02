@@ -92,7 +92,6 @@ namespace AspNetCoreHero.Boilerplate.Api.Extensions
             #region Services
 
             services.AddTransient<IIdentityService, IdentityService>();
-            services.AddTransient<IDateTimeService, SystemDateTimeService>();
 
             #endregion Services
 

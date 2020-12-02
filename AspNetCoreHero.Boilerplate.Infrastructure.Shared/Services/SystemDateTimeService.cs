@@ -1,7 +1,8 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using System;
 
-namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
+namespace AspNetCoreHero.Boilerplate.Infrastructure.Shared.Services
 {
     public class SystemDateTimeService : IDateTimeService
     {

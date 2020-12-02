@@ -27,6 +27,7 @@ namespace AspNetCoreHero.Boilerplate.Web
                 o.HasRippleEffect = true;
             });
             services.AddInfrastructure(_configuration);
+            services.AddSharedInfrastructure(_configuration);
             services.AddMultiLingualSupport();
             services.AddControllersWithViews();
         }

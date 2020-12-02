@@ -1,5 +1,8 @@
-﻿using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
+﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Settings;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
+using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
 using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
+using AspNetCoreHero.Boilerplate.Infrastructure.Shared.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -64,5 +67,12 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
             }).AddEntityFrameworkStores<IdentityContext>().AddDefaultUI().AddDefaultTokenProviders();
         }
 
+        public static void AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+            services.Configure<CacheSettings>(configuration.GetSection("CacheSettings"));
+            services.AddTransient<IDateTimeService, SystemDateTimeService>();
+            services.AddTransient<IMailService, SMTPMailService>();
+        }
     }
 }

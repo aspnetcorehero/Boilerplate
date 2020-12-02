@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Identity;
 using AspNetCoreHero.Boilerplate.Application.DTOs.Settings;
 using AspNetCoreHero.Boilerplate.Application.Interfaces;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
 using AspNetCoreHero.Results;
 using AspNetCoreHero.ThrowR;
