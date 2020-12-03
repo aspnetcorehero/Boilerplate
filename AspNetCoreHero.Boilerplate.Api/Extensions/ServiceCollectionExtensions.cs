@@ -83,11 +83,23 @@ namespace AspNetCoreHero.Boilerplate.Api.Extensions
         }
         public static void AddIdentityInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityContext>(options =>
-               options.UseSqlServer(
-                   configuration.GetConnectionString("IdentityConnection"),
-                   b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)));
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
+            if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+            {
+                services.AddDbContext<IdentityContext>(options =>
+                    options.UseInMemoryDatabase("IdentityDb"));
+            }
+            else
+            {
+                services.AddDbContext<IdentityContext>(options =>
+                options.UseSqlServer(
+                    configuration.GetConnectionString("IdentityConnection"),
+                    b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)));
+            }
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<IdentityContext>().AddDefaultUI().AddDefaultTokenProviders();
 
             #region Services
 

@@ -59,7 +59,16 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
         }
         private static void AddPersistenceContexts(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
+            if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+            {
+                services.AddDbContext<IdentityContext>(options =>
+                    options.UseInMemoryDatabase("IdentityDb"));
+            }
+            else
+            {
+                services.AddDbContext<IdentityContext>(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
+               
+            }
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
