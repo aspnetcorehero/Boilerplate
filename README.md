@@ -42,6 +42,7 @@ Has this Project helped you learn something New? or Helped you at work? Do Consi
 - Recommend this awesome project to your colleages.
 - Do consider endorsing me on LinkedIn for ASP.NET Core - [Connect via LinkedIn](https://www.linkedin.com/in/iammukeshm/)
 - Or, If you want to support this project on the long run, consider buying me a coffee.
+
 <a href="https://www.buymeacoffee.com/codewithmukesh" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" width="200"  ></a>
 
 
