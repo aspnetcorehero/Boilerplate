@@ -11,7 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0" />
     <PackageReference Include="MailKit" Version="2.10.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
-    <PackageReference Include="MimeKit" Version="2.10.0" />
+    <PackageReference Include="MimeKit" Version="2.10.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.2.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
@@ -23,6 +23,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AspNetCoreHero.Extensions.Caching\AspNetCoreHero.Extensions.Caching\AspNetCoreHero.Extensions.Caching.csproj" />
     <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Application\AspNetCoreHero.Boilerplate.Application.csproj" />
+    <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Domain\AspNetCoreHero.Boilerplate.Domain.csproj" />
   </ItemGroup>
 </Project>

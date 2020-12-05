@@ -1,0 +1,51 @@
+﻿@using AspNetCoreHero.Boilerplate.Application.DTOs.Entities
+@model IEnumerable<ProductDto>
+<table id="productTable" class="table table-striped" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Barcode</th>
+            <th>Description</th>
+            <th>Rate</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    @product.Id
+                </td>
+                <td>
+                    @product.Name
+                </td>
+                <td>
+                    @product.Barcode
+                </td>
+                <td>
+                    @product.Description
+                </td>
+                <td>
+                    @product.Rate
+                </td>
+                <td text-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu shadow animated--grow-in">
+                            <a onclick="jQueryModalGet('/products?handler=CreateOrEdit&id=@product.Id','Edit Product')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
+                            <form id="form_delete_@product.Id" onsubmit="return jQueryModalDelete(this)">
+                                <a href="javascript:$('#form_delete_@product.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

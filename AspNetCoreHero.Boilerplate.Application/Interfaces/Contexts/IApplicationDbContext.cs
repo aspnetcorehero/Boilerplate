@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using AspNetCoreHero.Boilerplate.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,5 +15,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts
         EntityEntry Entry(object entity);
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        DbSet<Product> Products { get; set; }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Shared
+﻿namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Shared
 {
     public interface IAuthenticatedUserService
     {

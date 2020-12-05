@@ -6,7 +6,4 @@
   <ItemGroup>
     <PackageReference Include="AspNetCoreHero.Abstractions" Version="1.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
 </Project>

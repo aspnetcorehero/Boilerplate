@@ -1,10 +1,19 @@
+using AspNetCoreHero.Boilerplate.Application.Extensions;
+using AspNetCoreHero.Boilerplate.Infrastructure.Extensions;
+using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.Boilerplate.Web.Extensions;
+using AspNetCoreHero.Boilerplate.Web.Services;
 using AspNetCoreHero.ToastNotification;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace AspNetCoreHero.Boilerplate.Web
 {
@@ -26,10 +35,21 @@ namespace AspNetCoreHero.Boilerplate.Web
                 o.IsDismissable = true;
                 o.HasRippleEffect = true;
             });
+            services.AddApplicationLayer();
             services.AddInfrastructure(_configuration);
+            services.AddPersistenceContexts(_configuration);
+            services.AddRepositories();
             services.AddSharedInfrastructure(_configuration);
             services.AddMultiLingualSupport();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            });
+            services.AddDistributedMemoryCache();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
+            services.AddScoped<IViewRenderService, ViewRenderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

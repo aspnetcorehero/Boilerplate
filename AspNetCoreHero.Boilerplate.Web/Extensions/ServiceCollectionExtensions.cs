@@ -3,6 +3,7 @@ using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
 using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
 using AspNetCoreHero.Boilerplate.Infrastructure.Shared.Services;
+using AspNetCoreHero.Boilerplate.Web.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -63,11 +64,14 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
             {
                 services.AddDbContext<IdentityContext>(options =>
                     options.UseInMemoryDatabase("IdentityDb"));
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseInMemoryDatabase("ApplicationDb"));
             }
             else
             {
                 services.AddDbContext<IdentityContext>(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
-               
+                services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection"), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
             }
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -82,6 +86,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
             services.Configure<CacheSettings>(configuration.GetSection("CacheSettings"));
             services.AddTransient<IDateTimeService, SystemDateTimeService>();
             services.AddTransient<IMailService, SMTPMailService>();
+            services.AddTransient<IAuthenticatedUserService, AuthenticatedUserService>();
         }
     }
 }
