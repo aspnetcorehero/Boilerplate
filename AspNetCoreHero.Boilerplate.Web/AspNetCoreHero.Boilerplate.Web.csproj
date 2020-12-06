@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
     <PackageReference Include="AspNetCoreHero.Extensions.Logging" Version="1.0.0" />
-    <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" />
@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AspNetCoreHero.ToastNotification\AspNetCoreHero.ToastNotification\AspNetCoreHero.ToastNotification.csproj" />
     <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Infrastructure.Shared\AspNetCoreHero.Boilerplate.Infrastructure.Shared.csproj" />
     <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Infrastructure\AspNetCoreHero.Boilerplate.Infrastructure.csproj" />
   </ItemGroup>

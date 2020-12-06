@@ -9,11 +9,11 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly INotyfService _notyf;
-        public HomeController(ILogger<HomeController> logger, INotyfService notyf)
+        //private readonly INotyfService _notyf;
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _notyf = notyf;
+            //_notyf = notyf;
         }
 
         public IActionResult Index()

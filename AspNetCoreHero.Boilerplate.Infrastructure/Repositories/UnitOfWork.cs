@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,43 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public Task<int> Commit(CancellationToken cancellationToken)
+        private readonly ApplicationDbContext _dbContext;
+        private bool disposed;
+
+        public UnitOfWork(ApplicationDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void Dispose()
+        public async Task<int> Commit(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
         public Task Rollback()
         {
-            throw new NotImplementedException();
+            //todo
+            return Task.CompletedTask;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    //dispose managed resources
+                    _dbContext.Dispose();
+                }
+            }
+            //dispose unmanaged resources
+            disposed = true;
         }
     }
 }

@@ -27,9 +27,9 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<Product> GetByIdAsync(int productId)
+        public async Task<Product> GetByIdAsync(int productId)
         {
-            throw new System.NotImplementedException();
+            return await _repository.Entities.Where(p=> p.Id == productId).FirstOrDefaultAsync();
         }
 
         public Task<ProductDto> GetDetailsByIdAsync(int productId)
@@ -56,14 +56,19 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<int> InsertAsync(Product product)
+        public async Task<int> InsertAsync(Product product)
         {
-            throw new System.NotImplementedException();
+            await _repository.AddAsync(product);
+            await _distributedCache.RemoveAsync(CacheKeys.ProductCacheKeys.ListKey);
+            return product.Id;
         }
 
-        public Task UpdateAsync(Product product)
+        public async Task UpdateAsync(Product product)
         {
-            throw new System.NotImplementedException();
+            await _repository.UpdateAsync(product);
+            await _distributedCache.RemoveAsync(CacheKeys.ProductCacheKeys.ListKey);
+            await _distributedCache.RemoveAsync(CacheKeys.ProductCacheKeys.GetKey(product.Id));
+
         }
     }
 }

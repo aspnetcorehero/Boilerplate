@@ -4,6 +4,8 @@ using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.Boilerplate.Web.Extensions;
 using AspNetCoreHero.Boilerplate.Web.Services;
 using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,6 +48,7 @@ namespace AspNetCoreHero.Boilerplate.Web
                 fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                 fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
             });
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddDistributedMemoryCache();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
@@ -65,6 +68,7 @@ namespace AspNetCoreHero.Boilerplate.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseNotyf();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -72,6 +76,7 @@ namespace AspNetCoreHero.Boilerplate.Web
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            //app.UseNToastNotify();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
 using AspNetCoreHero.Extensions.Caching;
 using Microsoft.Extensions.Caching.Distributed;
@@ -18,6 +19,19 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
             _distributedCache = distributedCache;
             _productRepository = productRepository;
         }
+
+        public async Task<Product> GetByIdAsync(int productId)
+        {
+            string cacheKey = ProductCacheKeys.GetKey(productId);
+            var product = await _distributedCache.GetAsync<Product>(cacheKey);
+            if (product == null)
+            {
+                product = await _productRepository.GetByIdAsync(productId);
+                await _distributedCache.SetAsync(cacheKey, product);
+            }
+            return product;
+        }
+
         public async Task<List<ProductDto>> GetCachedListAsync()
         {
             string cacheKey = ProductCacheKeys.ListKey;
