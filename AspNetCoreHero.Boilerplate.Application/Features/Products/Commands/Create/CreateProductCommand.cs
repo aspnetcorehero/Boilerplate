@@ -36,19 +36,11 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Crea
 
         public async Task<Result<int>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var product = _mapper.Map<Product>(request);
-                product.ProductCategoryId = 2;
-                await _productRepository.InsertAsync(product);
-                return Result<int>.Success(await _unitOfWork.Commit(cancellationToken));
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
+            var product = _mapper.Map<Product>(request);
+            product.ProductCategoryId = 2;
+            await _productRepository.InsertAsync(product);
+            await _unitOfWork.Commit(cancellationToken);
+            return Result<int>.Success(product.Id);
         }
     }
 }

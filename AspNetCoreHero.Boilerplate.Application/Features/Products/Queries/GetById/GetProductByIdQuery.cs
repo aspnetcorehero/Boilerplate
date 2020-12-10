@@ -18,9 +18,9 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetBy
         public int Id { get; set; }
         public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, Result<Product>>
         {
-            private readonly IProductCacheService _productCache;
+            private readonly IProductCacheRepository _productCache;
 
-            public GetProductByIdQueryHandler(IProductCacheService productCache)
+            public GetProductByIdQueryHandler(IProductCacheRepository productCache)
             {
                 _productCache = productCache;
             }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories
 {
-    public interface IProductCacheService
+    public interface IProductCacheRepository
     {
         Task<List<ProductDto>> GetCachedListAsync();
         Task<Product> GetByIdAsync(int productId);

@@ -17,9 +17,9 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
 
     public class GetAllProductsCachedQueryHandler : IRequestHandler<GetAllProductsCachedQuery, List<ProductDto>>
     {
-        private readonly IProductCacheService _productCache;
+        private readonly IProductCacheRepository _productCache;
 
-        public GetAllProductsCachedQueryHandler(IProductCacheService productCache)
+        public GetAllProductsCachedQueryHandler(IProductCacheRepository productCache)
         {
             _productCache = productCache;
         }

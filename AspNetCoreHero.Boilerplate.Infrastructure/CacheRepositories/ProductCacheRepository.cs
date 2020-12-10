@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
 {
-    public class ProductCacheService : IProductCacheService
+    public class ProductCacheRepository : IProductCacheRepository
     {
         private readonly IDistributedCache _distributedCache;
         private readonly IProductRepositoryAsync _productRepository;
-        public ProductCacheService(IDistributedCache distributedCache, IProductRepositoryAsync productRepository)
+        public ProductCacheRepository(IDistributedCache distributedCache, IProductRepositoryAsync productRepository)
         {
             _distributedCache = distributedCache;
             _productRepository = productRepository;

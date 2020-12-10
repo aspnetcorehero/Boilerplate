@@ -1,5 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Extensions;
-using AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities;
 using AspNetCoreHero.Results;
 using MediatR;
@@ -25,11 +25,11 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
 
     public class GGetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, PaginatedResult<ProductViewModel>>
     {
-        private readonly IApplicationDbContext _applicationContext;
+        private readonly IProductRepositoryAsync _repository;
 
-        public GGetAllProductsQueryHandler(IApplicationDbContext catalogContext)
+        public GGetAllProductsQueryHandler(IProductRepositoryAsync repository)
         {
-            _applicationContext = catalogContext;
+            _repository = repository;
         }
 
         public async Task<PaginatedResult<ProductViewModel>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
@@ -40,7 +40,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
                 Name = e.Name,
                 Description = e.Description,
             };
-            var paginatedList = await _applicationContext.Products
+            var paginatedList = await _repository.Products
                 .Select(expression)
                 .ToPaginatedListAsync(request.PageNumber, request.PageSize);
             return paginatedList;
