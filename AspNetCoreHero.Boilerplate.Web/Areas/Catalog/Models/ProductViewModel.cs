@@ -1,4 +1,9 @@
-﻿namespace AspNetCoreHero.Boilerplate.Web.Views.Product.ViewModels
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models
 {
     public class ProductViewModel
     {

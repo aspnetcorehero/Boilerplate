@@ -1,11 +1,10 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
-using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Create;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Create;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Update;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetById;
-using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
+using AspNetCoreHero.Boilerplate.Web.Abstractions;
+using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models;
 using AspNetCoreHero.Boilerplate.Web.Extensions;
-using AspNetCoreHero.Boilerplate.Web.Views.Product.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,21 +12,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspNetCoreHero.Boilerplate.Web.Controllers
+namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
 {
+    [Area("Catalog")]
     public class ProductController : BaseController<ProductController>
     {
-        public readonly ApplicationDbContext _context;
-
-        public ProductController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
         public async Task<IActionResult> Index()
         {
             var model = new ProductViewModel();
-            //model.Products = await _mediator.Send(new GetAllProductsCachedQuery());
             return View(model);
         }
         public async Task<IActionResult> LoadAll()
@@ -101,7 +93,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Controllers
                 var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", product);
                 return new JsonResult(new { isValid = false, html = html });
             }
-                
+
         }
     }
 }

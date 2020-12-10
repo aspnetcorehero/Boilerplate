@@ -1,5 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
-@using AspNetCoreHero.Boilerplate.Web.Views.Product.ViewModels
+@using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models
 @model ProductViewModel
 <form id="create-form" method="post" asp-controller="Product" asp-action="OnPostCreateOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryModalPost(this);" enctype="multipart/form-data">
     <div class="row">

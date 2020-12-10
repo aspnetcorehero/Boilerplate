@@ -2,7 +2,7 @@
     ViewData["Title"] = localizer["Products"];
     ViewData["Caption"] = localizer["Manage Products here"];
 }
-@using AspNetCoreHero.Boilerplate.Web.Views.Product.ViewModels
+@using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models
 @model ProductViewModel
 <div class="card">
     <div class="col-sm-12" style="padding:20px">
@@ -30,7 +30,7 @@
             });
         });
         function loadData() {
-            $('#viewAll').load('/product/LoadAll');
+            $('#viewAll').load('/catalog/product/LoadAll');
         }
     </script>
 }

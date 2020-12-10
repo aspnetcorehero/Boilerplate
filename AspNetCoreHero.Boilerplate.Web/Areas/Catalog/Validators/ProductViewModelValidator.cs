@@ -1,10 +1,11 @@
-﻿using FluentValidation;
+﻿using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspNetCoreHero.Boilerplate.Web.Views.Product.ViewModels
+namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Validators
 {
     public class ProductViewModelValidator : AbstractValidator<ProductViewModel>
     {
