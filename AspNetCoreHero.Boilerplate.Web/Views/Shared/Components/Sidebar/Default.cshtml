@@ -31,7 +31,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a is-active-route asp-area="Admin" asp-page="/users" class="nav-link">
+                            <a is-active-route asp-area="Admin" asp-controller="User" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>@localizer["Users"]</p>
                             </a>
@@ -46,21 +46,28 @@
                 </li>
                 }
                 <li class="nav-header">@localizer["Master"]</li>
-                <li class="nav-item">
-                    <a is-active-route asp-area="Catalog" asp-controller="Product" asp-action="Index" class="nav-link">
-                        <i class="nav-icon fas fa-archive"></i>
+                <li class="nav-item has-treeview">
+                    <a is-active-route asp-area="Admin" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            @localizer["Products"]
+                            @localizer["Catalog"]
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a is-active-route asp-area="ProductCategories" asp-page="/Index" class="nav-link">
-                        <i class="nav-icon fas fa-archive"></i>
-                        <p>
-                            @localizer["Product Categories"]
-                        </p>
-                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a is-active-route asp-area="Catalog" asp-controller="Product" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@localizer["Product"]</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a is-active-route asp-area="Catalog" asp-controller="Brand" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>@localizer["Brand"]</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
             </ul>

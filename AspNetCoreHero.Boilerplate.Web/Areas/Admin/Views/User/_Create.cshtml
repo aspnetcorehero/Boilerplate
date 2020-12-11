@@ -1,0 +1,48 @@
+﻿@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models
+@model UserViewModel
+<form id="create-form" method="post" asp-area="Admin" asp-controller="User" asp-action="OnPostCreate" onsubmit="return jQueryModalPost(this);">
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">@localizer["FirstName"]</label>
+        <div class="col-md-9">
+            <input type="text" asp-for="FirstName" name="FirstName" class="form-control">
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">@localizer["LastName"]</label>
+        <div class="col-md-9">
+            <input type="text" asp-for="LastName" name="LastName" class="form-control">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">@localizer["Email"]</label>
+        <div class="col-md-9">
+            <input type="email" asp-for="Email" name="Email" class="form-control">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">@localizer["Password"]</label>
+        <div class="col-md-9">
+            <input type="password" asp-for="Password" name="Password" class="form-control">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">@localizer["ConfirmPassword"]</label>
+        <div class="col-md-9">
+            <input type="password" asp-for="ConfirmPassword" name="ConfirmPassword" class="form-control">
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group justify-content-between" style="margin-bottom: 0px !important">
+        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">Cancel</button>
+
+    </div>
+
+</form>
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+</script>

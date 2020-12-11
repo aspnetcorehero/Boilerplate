@@ -1,0 +1,102 @@
+﻿@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models
+@model IEnumerable<UserViewModel>
+<table class="table table-striped" id="userTable">
+    <thead>
+        <tr>
+            <th>
+                @localizer["User"]
+            </th>
+            <th>
+                @localizer["Email"]
+            </th>
+            <th>
+                @localizer["Status"]
+            </th>
+            <th style="width:10%">
+                @localizer["Actions"]
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    <div class="row">
+                        @if (@user.ProfilePicture != null && user.ProfilePicture.Length > 0)
+                        {
+                            <div class="col-sm" style=" max-width: 80px;margin-right: 20px;">
+                                <img class="img-profile rounded-circle" style="height: 75px;width:75px;object-fit: cover;" src="data:image/*;base64,@(Convert.ToBase64String(@user.ProfilePicture))">
+                            </div>
+                        }
+                        else
+
+                        {
+                            <div class="col-sm" style="max-width:80px; margin-right: 20px;">
+                                <img class="img-profile rounded-circle" style="height: 75px;width:75px;object-fit: cover;" src="~/images/default-user.png">
+                            </div>
+                        }
+                        <div class="col-sm">
+                            <a>
+                                @user.FirstName @user.LastName
+                            </a>
+                            <br>
+                            <small>
+                                @user.Id
+                            </small>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a>
+                        @user.Email
+                    </a>
+                    <br>
+                    <small>
+                        @if (user.EmailConfirmed)
+                        {
+                            <span class="badge badge-success">@localizer["Email Confirmed"]</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-danger">@localizer["Email Not Confirmed"]</span>
+                        }
+                    </small>
+
+                </td>
+                <td>
+                    @if (user.IsActive)
+                    {
+                        <span class="badge badge-success">@localizer["Active"]</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">@localizer["Deactivated"]</span>
+                    }
+
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu shadow animated--grow-in">
+                            <a style='margin-right:16px' asp-route-userId="@user.Id" class="dropdown-item">
+                                <i class="fas fa-user"></i> @localizer["Profile"]
+                            </a>
+                            <a style='margin-right:16px' class="dropdown-item">
+                                <i class="fas fa-wrench"></i> @localizer["Manage Roles"]
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#userTable").DataTable();
+    });
+</script>
