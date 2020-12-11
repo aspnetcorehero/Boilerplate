@@ -60,7 +60,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                 {
                     var createProductCommand = _mapper.Map<CreateProductCommand>(product);
                     var result = await _mediator.Send(createProductCommand);
-                    if (result.Succeeded) _notify.Success($"Product Created.");
+                    if (result.Succeeded) _notify.Success($"Product with ID {result.Data} Created.");
                 }
                 else
                 {
@@ -71,16 +71,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                     //}
                     var updateProductCommand = _mapper.Map<UpdateProductCommand>(product);
                     var result = await _mediator.Send(updateProductCommand);
-                    //try
-                    //{
-                    //    var result = await Mediator.Send(updateProductCommand);
-                    //    if (result.Succeeded) Notify.AddSuccessToastMessage($"Product Updated.");
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    //Logger.LogInformation(ex.Message);
-                    //    throw;
-                    //}
+                    if (result.Succeeded) _notify.Information($"Product with ID {result.Data} Updated.");
 
                 }
                 var products = await _mediator.Send(new GetAllProductsCachedQuery());
