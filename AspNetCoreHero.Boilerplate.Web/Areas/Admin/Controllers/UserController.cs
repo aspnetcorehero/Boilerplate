@@ -24,7 +24,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -57,13 +57,14 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 var result = await _userManager.CreateAsync(user, userModel.Password);
                 if (result.Succeeded)
                 {
-                   // _logger.I("User created a new account with password.");
+                   
                     await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var currentUser = await _userManager.GetUserAsync(HttpContext.User);
                     var allUsersExceptCurrentUser = await _userManager.Users.Where(a => a.Id != currentUser.Id).ToListAsync();
                     var users = _mapper.Map<IEnumerable<UserViewModel>>(allUsersExceptCurrentUser);
                     var htmlData = await _viewRenderer.RenderViewToStringAsync("_ViewAll", users);
+                    _notify.Success($"Account for {user.Email} created.");
                     return new JsonResult(new { isValid = true, html = htmlData });
                 }
                 foreach (var error in result.Errors)
@@ -74,7 +75,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 return new JsonResult(new { isValid = false, html = html });
 
             }
-
             return default;
         }
     }

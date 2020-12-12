@@ -22,9 +22,11 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 
         public IQueryable<Product> Products => _repository.Entities;
 
-        public Task DeleteAsync(Product product)
+        public async Task DeleteAsync(Product product)
         {
-            throw new System.NotImplementedException();
+            await _repository.DeleteAsync(product);
+            await _distributedCache.RemoveAsync(CacheKeys.ProductCacheKeys.ListKey);
+            await _distributedCache.RemoveAsync(CacheKeys.ProductCacheKeys.GetKey(product.Id));
         }
 
         public async Task<Product> GetByIdAsync(int productId)

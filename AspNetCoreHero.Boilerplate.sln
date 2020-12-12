@@ -28,10 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreHero.Boilerplate.Infrastructure.Shared", "AspNetCoreHero.Boilerplate.Infrastructure.Shared\AspNetCoreHero.Boilerplate.Infrastructure.Shared.csproj", "{7E62A300-1001-4F7D-9E25-C3CE55BFFBBF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreHero.Results", "..\AspNetCoreHero.Results\AspNetCoreHero.Results\AspNetCoreHero.Results.csproj", "{5D5909B6-94E0-41DE-A2E6-E6EDB976AE4D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreHero.Extensions.Caching", "..\AspNetCoreHero.Extensions.Caching\AspNetCoreHero.Extensions.Caching\AspNetCoreHero.Extensions.Caching.csproj", "{E13E1AF2-1D61-498F-B5A3-120688CC5E64}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,14 +58,6 @@ Global
 		{7E62A300-1001-4F7D-9E25-C3CE55BFFBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E62A300-1001-4F7D-9E25-C3CE55BFFBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E62A300-1001-4F7D-9E25-C3CE55BFFBBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D5909B6-94E0-41DE-A2E6-E6EDB976AE4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D5909B6-94E0-41DE-A2E6-E6EDB976AE4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D5909B6-94E0-41DE-A2E6-E6EDB976AE4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D5909B6-94E0-41DE-A2E6-E6EDB976AE4D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E13E1AF2-1D61-498F-B5A3-120688CC5E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E13E1AF2-1D61-498F-B5A3-120688CC5E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E13E1AF2-1D61-498F-B5A3-120688CC5E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E13E1AF2-1D61-498F-B5A3-120688CC5E64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

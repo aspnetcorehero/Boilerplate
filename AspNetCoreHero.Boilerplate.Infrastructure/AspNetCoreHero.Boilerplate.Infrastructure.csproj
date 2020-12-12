@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AspNetCoreHero.Extensions.Caching" Version="1.1.0" />
     <PackageReference Include="AspNetCoreHero.ThrowR" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -23,7 +24,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AspNetCoreHero.Extensions.Caching\AspNetCoreHero.Extensions.Caching\AspNetCoreHero.Extensions.Caching.csproj" />
     <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Application\AspNetCoreHero.Boilerplate.Application.csproj" />
     <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Domain\AspNetCoreHero.Boilerplate.Domain.csproj" />
   </ItemGroup>

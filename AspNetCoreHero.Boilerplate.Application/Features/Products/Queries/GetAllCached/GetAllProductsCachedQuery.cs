@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
+using AspNetCoreHero.Results;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAllCached
 {
-    public class GetAllProductsCachedQuery : IRequest<List<ProductDto>>
+    public class GetAllProductsCachedQuery : IRequest<Result<List<ProductDto>>>
     {
         public GetAllProductsCachedQuery()
         {
@@ -15,7 +16,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
         }
     }
 
-    public class GetAllProductsCachedQueryHandler : IRequestHandler<GetAllProductsCachedQuery, List<ProductDto>>
+    public class GetAllProductsCachedQueryHandler : IRequestHandler<GetAllProductsCachedQuery, Result<List<ProductDto>>>
     {
         private readonly IProductCacheRepository _productCache;
 
@@ -24,9 +25,10 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
             _productCache = productCache;
         }
 
-        public async Task<List<ProductDto>> Handle(GetAllProductsCachedQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<ProductDto>>> Handle(GetAllProductsCachedQuery request, CancellationToken cancellationToken)
         {
-            return await _productCache.GetCachedListAsync();
+            var productList = await _productCache.GetCachedListAsync();
+            return Result<List<ProductDto>>.Success(productList);
         }
     }
 }

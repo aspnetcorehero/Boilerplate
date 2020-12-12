@@ -38,7 +38,7 @@
                         </button>
                         <div class="dropdown-menu shadow animated--grow-in">
                             <a onclick="jQueryModalGet('/catalog/product/OnGetCreateOrEdit?id=@product.Id','Edit Product')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
-                            <form id="form_delete_@product.Id" onsubmit="return jQueryModalDelete(this)">
+                            <form id="form_delete_@product.Id" asp-area="Catalog"  asp-controller="Product" method="post" asp-action="OnPostDelete" asp-route-id="@product.Id" onsubmit="return jQueryModalDelete(this)">
                                 <a href="javascript:$('#form_delete_@product.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>
                             </form>
                         </div>
