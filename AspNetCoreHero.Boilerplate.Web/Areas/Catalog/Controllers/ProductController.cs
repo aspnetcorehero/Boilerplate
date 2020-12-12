@@ -9,6 +9,8 @@ using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models;
 using AspNetCoreHero.Boilerplate.Web.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,7 +42,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                 var productViewModel = new ProductViewModel();
                 if (brandsResponse.Succeeded)
                 {
-                    
+                    var brandViewModel = _mapper.Map<List<BrandViewModel>>(brandsResponse.Data);
+                    productViewModel.Brands = new SelectList(brandViewModel, nameof(BrandViewModel.Id), nameof(BrandViewModel.Name), null, null);
                 }
                 return new JsonResult(new { isValid = true, html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", productViewModel) });
             }
@@ -49,7 +52,13 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                 var response = await _mediator.Send(new GetProductByIdQuery() { Id = id });
                 if (response.Succeeded)
                 {
+
                     var productViewModel = _mapper.Map<ProductViewModel>(response.Data);
+                    if (brandsResponse.Succeeded)
+                    {
+                        var brandViewModel = _mapper.Map<List<BrandViewModel>>(brandsResponse.Data);
+                        productViewModel.Brands = new SelectList(brandViewModel, nameof(BrandViewModel.Id), nameof(BrandViewModel.Name), null, null);
+                    }
                     return new JsonResult(new { isValid = true, html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", productViewModel) });
                 }
                 return null;

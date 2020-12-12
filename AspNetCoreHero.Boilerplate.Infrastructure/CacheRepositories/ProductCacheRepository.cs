@@ -1,5 +1,4 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
-using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
+﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;

@@ -15,7 +15,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Crea
         public byte[] Image { get; set; }
         public string Description { get; set; }
         public decimal Rate { get; set; }
-        public int ProductCategoryId { get; set; }
+        public int BrandId { get; set; }
     }
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Result<int>>
     {
@@ -33,7 +33,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Crea
         public async Task<Result<int>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = _mapper.Map<Product>(request);
-            product.BrandId = 2;
             await _productRepository.InsertAsync(product);
             await _unitOfWork.Commit(cancellationToken);
             return Result<int>.Success(product.Id);
