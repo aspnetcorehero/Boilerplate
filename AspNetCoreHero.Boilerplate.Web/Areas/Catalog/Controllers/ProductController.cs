@@ -19,7 +19,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
     [Area("Catalog")]
     public class ProductController : BaseController<ProductController>
     {
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var model = new ProductViewModel();
             return View(model);
@@ -69,17 +69,15 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Request.Form.Files.Count > 0)
-                {
-                    IFormFile file = Request.Form.Files.FirstOrDefault();
-                    product.Image = file.OptimizeImageSize(700, 700);
-                }
-
                 if (id == 0)
                 {
                     var createProductCommand = _mapper.Map<CreateProductCommand>(product);
                     var result = await _mediator.Send(createProductCommand);
-                    if (result.Succeeded) _notify.Success($"Product with ID {result.Data} Created.");
+                    if (result.Succeeded)
+                    {
+                        id = result.Data;
+                        _notify.Success($"Product with ID {result.Data} Created.");
+                    }
                     else _notify.Error(result.Message);
                 }
                 else
@@ -88,6 +86,12 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                     var result = await _mediator.Send(updateProductCommand);
                     if (result.Succeeded) _notify.Information($"Product with ID {result.Data} Updated.");
 
+                }
+                if (Request.Form.Files.Count > 0)
+                {
+                    IFormFile file = Request.Form.Files.FirstOrDefault();
+                    var image = file.OptimizeImageSize(700, 700);
+                    await _mediator.Send(new UpdateProductImageCommand() { Id = id, Image = image });
                 }
                 var response = await _mediator.Send(new GetAllProductsCachedQuery());
                 if (response.Succeeded)

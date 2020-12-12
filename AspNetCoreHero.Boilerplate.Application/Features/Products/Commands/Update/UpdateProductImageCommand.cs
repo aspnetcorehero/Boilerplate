@@ -2,28 +2,29 @@
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Results;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Update
 {
-    public class UpdateProductCommand : IRequest<Result<int>>
+    public class UpdateProductImageCommand : IRequest<Result<int>>
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Rate { get; set; }
-        public int BrandId { get; set; }
-        public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Result<int>>
+        public byte[] Image { get; set; }
+        public class UpdateProductImageCommandHandler : IRequestHandler<UpdateProductImageCommand, Result<int>>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IProductRepository _productRepository;
-            public UpdateProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork)
+            public UpdateProductImageCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork)
             {
                 _productRepository = productRepository;
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Result<int>> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
+            public async Task<Result<int>> Handle(UpdateProductImageCommand command, CancellationToken cancellationToken)
             {
                 var product = await _productRepository.GetByIdAsync(command.Id);
 
@@ -33,10 +34,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Upda
                 }
                 else
                 {
-                    product.Name = command.Name;
-                    product.Rate = command.Rate;
-                    product.Description = command.Description;
-                    product.BrandId = command.BrandId;
+                    product.Image = command.Image;
                     await _productRepository.UpdateAsync(product);
                     await _unitOfWork.Commit(cancellationToken);
                     return Result<int>.Success(product.Id);

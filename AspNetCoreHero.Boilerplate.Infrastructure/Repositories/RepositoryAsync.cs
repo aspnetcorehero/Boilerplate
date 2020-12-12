@@ -52,7 +52,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 
         public Task UpdateAsync(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Entry(entity).CurrentValues.SetValues(entity);
             return Task.CompletedTask;
         }
     }
