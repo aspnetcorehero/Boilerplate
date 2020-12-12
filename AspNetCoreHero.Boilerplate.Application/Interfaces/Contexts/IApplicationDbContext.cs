@@ -1,4 +1,4 @@
-﻿using AspNetCoreHero.Boilerplate.Domain.Entities;
+﻿using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Data;

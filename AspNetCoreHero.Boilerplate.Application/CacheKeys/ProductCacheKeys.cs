@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AspNetCoreHero.Boilerplate.Application.CacheKeys
+﻿namespace AspNetCoreHero.Boilerplate.Application.CacheKeys
 {
     public static class ProductCacheKeys
     {

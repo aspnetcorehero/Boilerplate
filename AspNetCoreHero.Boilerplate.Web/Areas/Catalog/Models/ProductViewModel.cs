@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models
 {
@@ -13,5 +10,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models
         public byte[] Image { get; set; }
         public string Description { get; set; }
         public decimal Rate { get; set; }
+        public int BrandId { get; set; }
+        public SelectList Brands { get; set; }
     }
 }

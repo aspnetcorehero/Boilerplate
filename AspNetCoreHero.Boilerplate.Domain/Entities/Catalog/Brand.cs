@@ -1,8 +1,8 @@
 ﻿using AspNetCoreHero.Abstractions.Domain;
 
-namespace AspNetCoreHero.Boilerplate.Domain.Entities
+namespace AspNetCoreHero.Boilerplate.Domain.Entities.Catalog
 {
-    public class ProductCategory : AuditableEntity
+    public class Brand : AuditableEntity
     {
         public string Name { get; set; }
         public decimal Tax { get; set; }

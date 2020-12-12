@@ -1,6 +1,6 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Extensions;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
-using AspNetCoreHero.Boilerplate.Domain.Entities;
+using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using AspNetCoreHero.Results;
 using MediatR;
 using System;
@@ -25,9 +25,9 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
 
     public class GGetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, PaginatedResult<ProductViewModel>>
     {
-        private readonly IProductRepositoryAsync _repository;
+        private readonly IProductRepository _repository;
 
-        public GGetAllProductsQueryHandler(IProductRepositoryAsync repository)
+        public GGetAllProductsQueryHandler(IProductRepository repository)
         {
             _repository = repository;
         }

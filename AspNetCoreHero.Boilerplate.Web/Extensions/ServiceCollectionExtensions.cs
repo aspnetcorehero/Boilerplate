@@ -26,10 +26,11 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
 
             services.AddMvc()
                .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
-               .AddDataAnnotationsLocalization(options => {
+               .AddDataAnnotationsLocalization(options =>
+               {
                    options.DataAnnotationLocalizerProvider = (type, factory) =>
                        factory.Create(typeof(SharedResource));
-                });
+               });
             services.AddRouting(o => o.LowercaseUrls = true);
             services.AddHttpContextAccessor();
             services.Configure<RequestLocalizationOptions>(options =>

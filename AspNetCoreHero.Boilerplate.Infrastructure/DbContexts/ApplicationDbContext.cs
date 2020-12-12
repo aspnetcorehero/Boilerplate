@@ -1,7 +1,7 @@
 ﻿using AspNetCoreHero.Abstractions.Domain;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
-using AspNetCoreHero.Boilerplate.Domain.Entities;
+using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Linq;

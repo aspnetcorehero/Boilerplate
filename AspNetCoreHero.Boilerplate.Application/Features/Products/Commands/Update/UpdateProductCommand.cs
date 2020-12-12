@@ -2,10 +2,6 @@
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,8 +17,8 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Upda
         public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Result<int>>
         {
             private readonly IUnitOfWork _unitOfWork;
-            private readonly IProductRepositoryAsync _productRepository;
-            public UpdateProductCommandHandler(IProductRepositoryAsync productRepository, IUnitOfWork unitOfWork)
+            private readonly IProductRepository _productRepository;
+            public UpdateProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork)
             {
                 _productRepository = productRepository;
                 _unitOfWork = unitOfWork;

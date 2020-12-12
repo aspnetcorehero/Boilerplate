@@ -1,11 +1,6 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Exceptions;
-using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,9 +11,9 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Dele
         public int Id { get; set; }
         public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Result<int>>
         {
-            private readonly IProductRepositoryAsync _productRepository;
+            private readonly IProductRepository _productRepository;
             private readonly IUnitOfWork _unitOfWork;
-            public DeleteProductCommandHandler(IProductRepositoryAsync productRepository, IUnitOfWork unitOfWork)
+            public DeleteProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork)
             {
                 _productRepository = productRepository;
                 _unitOfWork = unitOfWork;
@@ -28,7 +23,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Dele
                 var product = await _productRepository.GetByIdAsync(command.Id);
                 await _productRepository.DeleteAsync(product);
                 await _unitOfWork.Commit(cancellationToken);
-                return  Result<int>.Success(product.Id);
+                return Result<int>.Success(product.Id);
             }
         }
     }

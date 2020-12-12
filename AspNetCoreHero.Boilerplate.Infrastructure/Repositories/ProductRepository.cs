@@ -1,6 +1,6 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
+﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
-using AspNetCoreHero.Boilerplate.Domain.Entities;
+using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Collections.Generic;
@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 {
-    class ProductRepositoryAsync : IProductRepositoryAsync
+    public class ProductRepository : IProductRepository
     {
         private readonly IRepositoryAsync<Product> _repository;
         private readonly IDistributedCache _distributedCache;
 
-        public ProductRepositoryAsync(IDistributedCache distributedCache, IRepositoryAsync<Product> repository)
+        public ProductRepository(IDistributedCache distributedCache, IRepositoryAsync<Product> repository)
         {
             _distributedCache = distributedCache;
             _repository = repository;
@@ -31,7 +31,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 
         public async Task<Product> GetByIdAsync(int productId)
         {
-            return await _repository.Entities.Where(p=> p.Id == productId).FirstOrDefaultAsync();
+            return await _repository.Entities.Where(p => p.Id == productId).FirstOrDefaultAsync();
         }
 
         public Task<ProductDto> GetDetailsByIdAsync(int productId)
@@ -47,7 +47,8 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
                 Name = d.Name,
                 Description = d.Description,
                 Rate = d.Rate,
-                Barcode = d.Barcode
+                Barcode = d.Barcode,
+                BrandId = d.BrandId
             }).ToListAsync();
 
             return productList;

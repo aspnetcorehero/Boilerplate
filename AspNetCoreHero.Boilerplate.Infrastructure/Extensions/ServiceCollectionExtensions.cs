@@ -6,11 +6,6 @@ using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
 using AspNetCoreHero.Boilerplate.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.Extensions
 {
@@ -25,8 +20,10 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Extensions
         {
             #region Repositories
             services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
-            services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
+            services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductCacheRepository, ProductCacheRepository>();
+            services.AddTransient<IBrandRepository, BrandRepository>();
+            services.AddTransient<IBrandCacheRepository, BrandCacheRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             #endregion
         }

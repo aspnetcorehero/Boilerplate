@@ -1,4 +1,5 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Create;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllCached;
+using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Create;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Delete;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Update;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAllCached;
@@ -8,8 +9,6 @@ using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models;
 using AspNetCoreHero.Boilerplate.Web.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,7 +25,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
         public async Task<IActionResult> LoadAll()
         {
             var response = await _mediator.Send(new GetAllProductsCachedQuery());
-            if(response.Succeeded)
+            if (response.Succeeded)
             {
                 return PartialView("_ViewAll", response.Data);
             }
@@ -34,10 +33,16 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
         }
         public async Task<JsonResult> OnGetCreateOrEdit(int id = 0)
         {
+            var brandsResponse = await _mediator.Send(new GetAllBrandsCachedQuery());
+            
             if (id == 0)
             {
-                var product = new ProductViewModel();
-                return new JsonResult(new { isValid = true, html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", product) });
+                var productViewModel = new ProductViewModel();
+                if (brandsResponse.Succeeded)
+                {
+                    
+                }
+                return new JsonResult(new { isValid = true, html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", productViewModel) });
             }
             else
             {
@@ -76,7 +81,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
 
                 }
                 var response = await _mediator.Send(new GetAllProductsCachedQuery());
-                if(response.Succeeded)
+                if (response.Succeeded)
                 {
                     var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", response.Data);
                     return new JsonResult(new { isValid = true, html = html });
@@ -99,7 +104,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
         public async Task<JsonResult> OnPostDelete(int id)
         {
             var deleteCommand = await _mediator.Send(new DeleteProductCommand { Id = id });
-            if(deleteCommand.Succeeded)
+            if (deleteCommand.Succeeded)
             {
                 _notify.Information($"Product with Id {id} Deleted.");
                 var response = await _mediator.Send(new GetAllProductsCachedQuery());

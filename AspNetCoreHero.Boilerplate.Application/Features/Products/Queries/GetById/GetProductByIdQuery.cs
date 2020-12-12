@@ -1,13 +1,8 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
-using AspNetCoreHero.Boilerplate.Application.Exceptions;
+﻿using AspNetCoreHero.Boilerplate.Application.Exceptions;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
-using AspNetCoreHero.Boilerplate.Domain.Entities;
+using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using AspNetCoreHero.Results;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

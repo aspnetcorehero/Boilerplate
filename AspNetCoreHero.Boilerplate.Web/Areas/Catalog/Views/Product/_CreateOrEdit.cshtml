@@ -45,16 +45,16 @@
             </div>
         </div>
         <div class="col-md-6">
-            @*<div class="form-group row">
-                <label class="col-md-3 col-form-label">Category</label>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">Brand</label>
                 <div class="col-md-9">
                     <div class="input-group">
-                        <select name="ProductCategoryId" class="form-control select2bs4" id="ProductCategoryId" asp-for="ProductCategoryId" asp-items="@Model.ProductCategories">
+                        <select name="BrandId" class="form-control select2bs4" id="BrandId" asp-for="BrandId" asp-items="@Model.Brands">
                         </select>
                     </div>
-                    <span asp-validation-for="" class="text-danger"></span>
+                    <span asp-validation-for="BrandId" class="text-danger"></span>
                 </div>
-            </div>*@
+            </div>
             <div class="form-group">
                 <div class="custom-file form-image">
                     <input accept=".png,.jpg,.jpeg,.gif,.tif"
@@ -87,4 +87,12 @@
 </form>
 <script type="text/javascript" language=javascript>
     $.validator.unobtrusive.parse(document);
+    $("#BrandId").select2({
+        placeholder: "Select a Category",
+        theme: "bootstrap4",
+        escapeMarkup: function (m) {
+            return m;
+        }
+    });
+
 </script>

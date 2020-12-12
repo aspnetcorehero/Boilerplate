@@ -1,12 +1,13 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
-using AspNetCoreHero.Boilerplate.Domain.Entities;
+using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
+using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
 {
-    public interface IProductRepositoryAsync
+    public interface IProductRepository
     {
         IQueryable<Product> Products { get; }
 

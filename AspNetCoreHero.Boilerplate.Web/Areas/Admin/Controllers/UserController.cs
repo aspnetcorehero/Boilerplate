@@ -57,7 +57,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 var result = await _userManager.CreateAsync(user, userModel.Password);
                 if (result.Succeeded)
                 {
-                   
+
                     await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var currentUser = await _userManager.GetUserAsync(HttpContext.User);

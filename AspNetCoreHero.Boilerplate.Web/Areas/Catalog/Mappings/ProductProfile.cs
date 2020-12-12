@@ -1,13 +1,10 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
+using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Create;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Update;
-using AspNetCoreHero.Boilerplate.Domain.Entities;
+using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Mappings
 {

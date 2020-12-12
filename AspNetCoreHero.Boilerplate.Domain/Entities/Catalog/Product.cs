@@ -1,6 +1,6 @@
 ﻿using AspNetCoreHero.Abstractions.Domain;
 
-namespace AspNetCoreHero.Boilerplate.Domain.Entities
+namespace AspNetCoreHero.Boilerplate.Domain.Entities.Catalog
 {
     public class Product : AuditableEntity
     {
@@ -9,7 +9,7 @@ namespace AspNetCoreHero.Boilerplate.Domain.Entities
         public byte[] Image { get; set; }
         public string Description { get; set; }
         public decimal Rate { get; set; }
-        public int ProductCategoryId { get; set; }
-        public virtual ProductCategory ProductCategory { get; set; }
+        public int BrandId { get; set; }
+        public virtual Brand Brand { get; set; }
     }
 }
