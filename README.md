@@ -26,19 +26,19 @@ Since the project is still under developement, the CLI features are not yet avai
 3. Give it a few moment for the solution to restore all the required packages from NuGet store.
 4. Open up appsettings.json on each of the WebAPI and MVC Project. Make sure to update the Connection strings with valid ones.
 5. Open up Package Manager Console. 
-  1. Set the API Project as the Startup Project.
-  2. Set the Infrastructure Project as the Default project. (You can typically find this dropdown on the Package Manager Console tab somewhere on the top corner)
-  3. Run the following commands to add migrations(if any).
+    1. Set the API Project as the Startup Project.
+    2. Set the Infrastructure Project as the Default project. (You can typically find this dropdown on the Package Manager Console tab somewhere on the top corner)
+    3. Run the following commands to add migrations(if any).
       ```
       add-migration initialbuild -context ApplicationDbContext
       add-migration initialbuild -context IdentityContext
       ```
-  4. Next, let's update our database with the newly created migrations.
+    4. Next, let's update our database with the newly created migrations.
       ```
       update-database -context ApplicationDbContext
       update-database -context IdentityContext
       ```
-6.That's almost everything you will have to do to get started with this project. More details will be posted once the Project is at it's pre-production stage.Cheers!
+6. That's almost everything you will have to do to get started with this project. More details will be posted once the Project is at it's pre-production stage. Cheers!
 
 ### Default Roles & Credentials
 As soon you build and run your Awesome Application, default users and roles get added to the database.
