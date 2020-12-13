@@ -1,9 +1,9 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
-using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
 using AspNetCoreHero.Extensions.Caching;
+using AspNetCoreHero.ThrowR;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,15 +27,16 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
             if (product == null)
             {
                 product = await _productRepository.GetByIdAsync(productId);
+                Throw.Exception.IfNull(product, "Product", "No Product Found");
                 await _distributedCache.SetAsync(cacheKey, product);
             }
             return product;
         }
 
-        public async Task<List<ProductDto>> GetCachedListAsync()
+        public async Task<List<Product>> GetCachedListAsync()
         {
             string cacheKey = ProductCacheKeys.ListKey;
-            var productList = await _distributedCache.GetAsync<List<ProductDto>>(cacheKey);
+            var productList = await _distributedCache.GetAsync<List<Product>>(cacheKey);
             if (productList == null)
             {
                 productList = await _productRepository.GetListAsync();

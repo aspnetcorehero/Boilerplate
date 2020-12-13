@@ -29,14 +29,15 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
             var response = await _mediator.Send(new GetAllProductsCachedQuery());
             if (response.Succeeded)
             {
-                return PartialView("_ViewAll", response.Data);
+                var viewModel = _mapper.Map<List<ProductViewModel>>(response.Data);
+                return PartialView("_ViewAll", viewModel);
             }
             return null;
         }
         public async Task<JsonResult> OnGetCreateOrEdit(int id = 0)
         {
             var brandsResponse = await _mediator.Send(new GetAllBrandsCachedQuery());
-            
+
             if (id == 0)
             {
                 var productViewModel = new ProductViewModel();
@@ -96,7 +97,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                 var response = await _mediator.Send(new GetAllProductsCachedQuery());
                 if (response.Succeeded)
                 {
-                    var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", response.Data);
+                    var viewModel = _mapper.Map<List<ProductViewModel>>(response.Data);
+                    var html = await _viewRenderer.RenderViewToStringAsync("_ViewAll", viewModel);
                     return new JsonResult(new { isValid = true, html = html });
                 }
                 else

@@ -1,8 +1,11 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Settings;
+﻿using AspNetCoreHero.Boilerplate.Api.Services;
+using AspNetCoreHero.Boilerplate.Application.DTOs.Settings;
 using AspNetCoreHero.Boilerplate.Application.Interfaces;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
 using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
 using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services;
+using AspNetCoreHero.Boilerplate.Infrastructure.Shared.Services;
 using AspNetCoreHero.Results;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
@@ -22,6 +25,14 @@ namespace AspNetCoreHero.Boilerplate.Api.Extensions
 {
     public static class ServiceCollectionExtensions
     {
+        public static void AddSharedInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+            services.Configure<CacheSettings>(configuration.GetSection("CacheSettings"));
+            services.AddTransient<IDateTimeService, SystemDateTimeService>();
+            services.AddTransient<IMailService, SMTPMailService>();
+            services.AddTransient<IAuthenticatedUserService, AuthenticatedUserService>();
+        }
         public static void AddEssentials(this IServiceCollection services)
         {
             services.RegisterSwagger();
@@ -81,19 +92,20 @@ namespace AspNetCoreHero.Boilerplate.Api.Extensions
                 config.ReportApiVersions = true;
             });
         }
-        public static void AddIdentityInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static void AddContextInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))
             {
                 services.AddDbContext<IdentityContext>(options =>
                     options.UseInMemoryDatabase("IdentityDb"));
+                services.AddDbContext<ApplicationDbContext>(options =>
+                   options.UseInMemoryDatabase("ApplicationDb"));
             }
             else
             {
-                services.AddDbContext<IdentityContext>(options =>
-                options.UseSqlServer(
-                    configuration.GetConnectionString("IdentityConnection"),
-                    b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)));
+                services.AddDbContext<IdentityContext>(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
+                services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection"), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
             }
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {

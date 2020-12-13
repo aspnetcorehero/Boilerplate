@@ -1,7 +1,11 @@
 using AspNetCoreHero.Boilerplate.Api.Extensions;
 using AspNetCoreHero.Boilerplate.Api.Middlewares;
+using AspNetCoreHero.Boilerplate.Application.Extensions;
+using AspNetCoreHero.Boilerplate.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,9 +24,20 @@ namespace AspNetCoreHero.Boilerplate.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentityInfrastructure(_configuration);
+            services.AddApplicationLayer();
+            services.AddContextInfrastructure(_configuration);
+            services.AddPersistenceContexts(_configuration);
+            services.AddRepositories();
+            services.AddSharedInfrastructure(_configuration);
             services.AddEssentials();
             services.AddControllers();
+            services.AddMvc(o =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                o.Filters.Add(new AuthorizeFilter(policy));
+            });
 
         }
 
@@ -39,7 +54,7 @@ namespace AspNetCoreHero.Boilerplate.Api
             app.UseRouting();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

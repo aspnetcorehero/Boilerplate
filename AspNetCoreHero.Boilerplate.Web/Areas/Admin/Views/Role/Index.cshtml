@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = localizer["Users"];
-    ViewData["Caption"] = localizer["Manage Users here"];
+    ViewData["Title"] = localizer["Roles"];
+    ViewData["Caption"] = localizer["Manage Roles here"];
 }
 <div class="card">
     <div class="col-sm-12" style="padding:20px">
-        <a onclick="jQueryModalGet('/admin/user/OnGetCreate','Create User')" class="btn bg-success">
+        <a onclick="jQueryModalGet('/admin/role/OnGetCreate','Create Role')" class="btn bg-success">
             <i class="fa fa-plus-square"></i> Create
         </a>
         <a id="reload" class="btn btn-primary text-white">
@@ -21,14 +21,14 @@
     <script src="~/js/site.js"></script>
     <script>
         $(document).ready(function () {
-            $("#userTable").DataTable();
+            $("#roleTable").DataTable();
             loadData();
             $('#reload').on('click', function () {
                 loadData();
             });
         });
         function loadData() {
-            $('#viewAll').load('/admin/user/LoadAll');
+            $('#viewAll').load('/admin/role/LoadAll');
         }
     </script>
 }

@@ -20,32 +20,49 @@
                 </li>
                 @if (User.IsInRole("SuperAdmin"))
                 {
-                <li class="nav-header">@localizer["Admin"]</li>
+                    <li class="nav-header">@localizer["Admin"]</li>
+                    <li class="nav-item has-treeview">
+                        <a is-active-route asp-area="Admin" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                @localizer["Admin Settings"]
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a is-active-route asp-area="Admin" asp-controller="User" class="nav-link">
+                                    <i class="far fa-user-circle nav-icon"></i>
+                                    <p>@localizer["Users"]</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a is-active-route asp-area="Admin" asp-controller="Role" class="nav-link">
+                                    <i class="far fa-user-lock nav-icon"></i>
+                                    <p>@localizer["Roles"]</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                <li class="nav-header">@localizer["Master"]</li>
                 <li class="nav-item has-treeview">
-                    <a is-active-route asp-area="Admin" class="nav-link">
+                    <a is-active-route asp-area="Utlities" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            @localizer["Admin Settings"]
+                            @localizer["Utlities"]
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a is-active-route asp-area="Admin" asp-controller="User" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@localizer["Users"]</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a is-active-route asp-area="Admin" asp-page="/roles" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>@localizer["Roles"]</p>
+                            <a is-active-route asp-area="Utlities" asp-controller="Document" class="nav-link">
+                                <i class="far fa-file-archive nav-icon"></i>
+                                <p>@localizer["Document"]</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                }
-                <li class="nav-header">@localizer["Master"]</li>
                 <li class="nav-item has-treeview">
                     <a is-active-route asp-area="Admin" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -69,7 +86,6 @@
                         </li>
                     </ul>
                 </li>
-
             </ul>
         </nav>
     </div>

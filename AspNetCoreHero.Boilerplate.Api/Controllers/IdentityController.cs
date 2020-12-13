@@ -1,10 +1,12 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Identity;
 using AspNetCoreHero.Boilerplate.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Api.Controllers
 {
+
     [Route("api/identity")]
     [ApiController]
     public class IdentityController : ControllerBase
@@ -22,6 +24,7 @@ namespace AspNetCoreHero.Boilerplate.Api.Controllers
         /// <param name="tokenRequest"></param>
         /// <returns></returns>
         [HttpPost("token")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetTokenAsync(TokenRequest tokenRequest)
         {
             var ipAddress = GenerateIPAddress();

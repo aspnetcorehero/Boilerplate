@@ -1,5 +1,4 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
-using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
@@ -25,10 +24,10 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
             throw new NotImplementedException();
         }
 
-        public async Task<List<BrandDto>> GetCachedListAsync()
+        public async Task<List<Brand>> GetCachedListAsync()
         {
             string cacheKey = BrandCacheKeys.ListKey;
-            var brandList = await _distributedCache.GetAsync<List<BrandDto>>(cacheKey);
+            var brandList = await _distributedCache.GetAsync<List<Brand>>(cacheKey);
             if (brandList == null)
             {
                 brandList = await _brandRepository.GetListAsync();

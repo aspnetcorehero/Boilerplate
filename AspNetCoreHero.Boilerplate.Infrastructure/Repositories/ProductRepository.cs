@@ -1,5 +1,4 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
-using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
@@ -34,27 +33,17 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             return await _repository.Entities.Where(p => p.Id == productId).FirstOrDefaultAsync();
         }
 
-        public Task<ProductDto> GetDetailsByIdAsync(int productId)
+        public Task<Product> GetDetailsByIdAsync(int productId)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<List<ProductDto>> GetListAsync()
+        public async Task<List<Product>> GetListAsync()
         {
-            var productList = await _repository.Entities.Select(d => new ProductDto
-            {
-                Id = d.Id,
-                Name = d.Name,
-                Description = d.Description,
-                Rate = d.Rate,
-                Barcode = d.Barcode,
-                BrandId = d.BrandId
-            }).ToListAsync();
-
-            return productList;
+            return await _repository.Entities.ToListAsync();
         }
 
-        public Task<List<ProductDto>> GetSelectListAsync()
+        public Task<List<Product>> GetSelectListAsync()
         {
             throw new System.NotImplementedException();
         }

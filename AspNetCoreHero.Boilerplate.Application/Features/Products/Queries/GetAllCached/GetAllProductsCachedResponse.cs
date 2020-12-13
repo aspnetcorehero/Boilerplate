@@ -1,6 +1,6 @@
-﻿namespace AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog
+﻿namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAllCached
 {
-    public class ProductDto
+    public class GetAllProductsCachedResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }

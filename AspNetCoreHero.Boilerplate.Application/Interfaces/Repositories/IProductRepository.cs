@@ -1,6 +1,4 @@
-﻿using AspNetCoreHero.Boilerplate.Application.DTOs.Entities;
-using AspNetCoreHero.Boilerplate.Application.DTOs.Entities.Catalog;
-using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+﻿using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,13 +9,13 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
     {
         IQueryable<Product> Products { get; }
 
-        Task<List<ProductDto>> GetListAsync();
+        Task<List<Product>> GetListAsync();
 
-        Task<List<ProductDto>> GetSelectListAsync();
+        Task<List<Product>> GetSelectListAsync();
 
         Task<Product> GetByIdAsync(int productId);
 
-        Task<ProductDto> GetDetailsByIdAsync(int productId);
+        Task<Product> GetDetailsByIdAsync(int productId);
 
         Task<int> InsertAsync(Product product);
 
