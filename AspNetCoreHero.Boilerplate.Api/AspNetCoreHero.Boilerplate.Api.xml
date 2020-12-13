@@ -11,12 +11,5 @@
             <param name="tokenRequest"></param>
             <returns></returns>
         </member>
-        <member name="M:AspNetCoreHero.Boilerplate.Api.Controllers.v1.ProductController.GetAll(System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-            
-        </member>
     </members>
 </doc>

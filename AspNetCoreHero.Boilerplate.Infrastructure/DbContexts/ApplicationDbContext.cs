@@ -2,6 +2,7 @@
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
+using AspNetCoreHero.EntityFrameworkCore.Auditing;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.DbContexts
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public class ApplicationDbContext : AuditableContext, IApplicationDbContext
     {
         private readonly IDateTimeService _dateTime;
         private readonly IAuthenticatedUserService _authenticatedUser;

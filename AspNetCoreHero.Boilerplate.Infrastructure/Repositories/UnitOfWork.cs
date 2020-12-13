@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
 using System;
 using System.Threading;
@@ -8,17 +9,20 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
+        private readonly IAuthenticatedUserService _authenticatedUserService;
         private readonly ApplicationDbContext _dbContext;
         private bool disposed;
 
-        public UnitOfWork(ApplicationDbContext dbContext)
+        public UnitOfWork(ApplicationDbContext dbContext, IAuthenticatedUserService authenticatedUserService)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _authenticatedUserService = authenticatedUserService;
         }
 
         public async Task<int> Commit(CancellationToken cancellationToken)
         {
-            return await _dbContext.SaveChangesAsync(cancellationToken);
+            //Auditable Commits
+            return await _dbContext.SaveChangesAsync(_authenticatedUserService.UserId);
         }
 
         public Task Rollback()
