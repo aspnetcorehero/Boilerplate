@@ -10,26 +10,25 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Seeds
 {
     public static class DefaultSuperAdminUser
     {
-        public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
+        public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string module)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);
-            if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
+            var allPermissions = Permissions.GeneratePermissionsForModule(module);
+            foreach(var permission in allPermissions)
             {
-                await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, permission));
+                
+                if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
+                {
+                    await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, permission));
+                }
             }
         }
         private async static Task SeedClaimsForSuperAdmin(this RoleManager<IdentityRole> roleManager)
         {
 
             var adminRole = await roleManager.FindByNameAsync("SuperAdmin");
-            await roleManager.AddPermissionClaim(adminRole, Permissions.Master.Create);
-            await roleManager.AddPermissionClaim(adminRole, Permissions.Master.Edit);
-            await roleManager.AddPermissionClaim(adminRole, Permissions.Master.View);
-            await roleManager.AddPermissionClaim(adminRole, Permissions.Master.Delete);
-            await roleManager.AddPermissionClaim(adminRole, Permissions.Users.Create);
-            await roleManager.AddPermissionClaim(adminRole, Permissions.Users.Edit);
-            await roleManager.AddPermissionClaim(adminRole, Permissions.Users.View);
-            await roleManager.AddPermissionClaim(adminRole, Permissions.Users.Delete);
+            await roleManager.AddPermissionClaim(adminRole, "Users");
+            await roleManager.AddPermissionClaim(adminRole, "Products");
         }
         public static async Task SeedAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {

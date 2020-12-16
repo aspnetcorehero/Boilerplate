@@ -1,10 +1,35 @@
 ﻿@page
-@model AccessDeniedModel
 @{
-    ViewData["Title"] = "Access denied";
+    ViewData["Title"] = "Access Denied";
+    Layout = null;
 }
-
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sorry, This Page Can&#39;t Be Accessed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <partial name="_Styles" />
+</head>
+<body class="hold-transition login-page" style="background: white!important;">
+    <div class="login-box" style="width:600px!important;">
+        <div class="login-logo">
+            <a href="https://codewithmukesh.com">Access <b>Denied</b>!</a>
+        </div>
+        <!-- /.login-logo -->
+        <p class="login-box-msg">Sorry, you do not have access to this resource.<br />Please go back to the previous page to continue browsing.</p>
+        <!-- /.login-card-body -->
+        <div style="text-align:-webkit-center;">
+            <p class="mb-1">
+                <a class="btn btn-danger" href="javascript:history.back()">Go Back</a>
+            </p>
+            <br />
+            <small style="font-size:15px">
+                Made with <span style="color: #e25555;">&hearts;</span> by <a href="http://codewithmukesh.com">codewithmukesh</a>.
+            </small>
+        </div>
+    </div>
+    <partial name="_Scripts" />
+</body>
+</html>

@@ -2,11 +2,13 @@ using AspNetCoreHero.Boilerplate.Application.Extensions;
 using AspNetCoreHero.Boilerplate.Infrastructure.Extensions;
 using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.Boilerplate.Web.Extensions;
+using AspNetCoreHero.Boilerplate.Web.Permission;
 using AspNetCoreHero.Boilerplate.Web.Services;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +33,8 @@ namespace AspNetCoreHero.Boilerplate.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+            services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddNotyf(o =>
             {
                 o.DurationInSeconds = 10;

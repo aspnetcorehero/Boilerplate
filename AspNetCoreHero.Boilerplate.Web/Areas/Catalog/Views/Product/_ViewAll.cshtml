@@ -8,44 +8,60 @@
             <th>Barcode</th>
             <th>Description</th>
             <th>Rate</th>
-            <th>Actions</th>
+            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Delete)).Result.Succeeded
+               || (AuthorizationService.AuthorizeAsync(User, Permissions.Products.Edit)).Result.Succeeded)
+            {
+                <th>Actions</th>
+            }
+
         </tr>
     </thead>
     <tbody>
 
         @foreach (var product in Model)
         {
-            <tr>
-                <td>
-                    @product.Id
-                </td>
-                <td>
-                    @product.Name
-                </td>
-                <td>
-                    @product.Barcode
-                </td>
-                <td>
-                    @product.Description
-                </td>
-                <td>
-                    @product.Rate
-                </td>
+        <tr>
+            <td>
+                @product.Id
+            </td>
+            <td>
+                @product.Name
+            </td>
+            <td>
+                @product.Barcode
+            </td>
+            <td>
+                @product.Description
+            </td>
+            <td>
+                @product.Rate
+            </td>
+            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Delete)).Result.Succeeded
+       || (AuthorizationService.AuthorizeAsync(User, Permissions.Products.Edit)).Result.Succeeded)
+            {
                 <td text-right">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Action
                         </button>
                         <div class="dropdown-menu shadow animated--grow-in">
-                            <a onclick="jQueryModalGet('/catalog/product/OnGetCreateOrEdit?id=@product.Id','Edit Product')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
-                            <form id="form_delete_@product.Id" asp-area="Catalog"  asp-controller="Product" method="post" asp-action="OnPostDelete" asp-route-id="@product.Id" onsubmit="return jQueryModalDelete(this)">
-                                <a href="javascript:$('#form_delete_@product.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>
-                            </form>
+                            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Edit)).Result.Succeeded)
+                            {
+                                <a onclick="jQueryModalGet('/catalog/product/OnGetCreateOrEdit?id=@product.Id','Edit Product')" class="dropdown-item"><i class="fas fa-pencil-alt"></i>  Edit</a>
+
+                            }
+                            @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Products.Delete)).Result.Succeeded)
+
+                            {
+                                <form id="form_delete_@product.Id" asp-area="Catalog" asp-controller="Product" method="post" asp-action="OnPostDelete" asp-route-id="@product.Id" onsubmit="return jQueryModalDelete(this)">
+                                    <a href="javascript:$('#form_delete_@product.Id').submit();" class="dropdown-item"><i class="fas fa-trash-alt"></i>  Delete</a>
+                                </form>
+                            }
                         </div>
                     </div>
                 </td>
-
-            </tr>
+            }
+        </tr>
         }
     </tbody>
 </table>

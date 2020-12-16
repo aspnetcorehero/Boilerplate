@@ -47,6 +47,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
         }
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddPersistenceContexts(configuration);
             services.AddAuthenticationScheme(configuration);
         }

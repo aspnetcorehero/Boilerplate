@@ -1,7 +1,9 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Enums;
+﻿using AspNetCoreHero.Boilerplate.Application.Constants;
+using AspNetCoreHero.Boilerplate.Application.Enums;
 using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
 using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +25,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        [Authorize(Policy = Permissions.Users.View)]
         public IActionResult Index()
         {
             return View();

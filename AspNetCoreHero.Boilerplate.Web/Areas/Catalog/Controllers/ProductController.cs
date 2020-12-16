@@ -1,4 +1,5 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllCached;
+﻿using AspNetCoreHero.Boilerplate.Application.Constants;
+using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Create;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Delete;
 using AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Update;
@@ -7,6 +8,7 @@ using AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetById;
 using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models;
 using AspNetCoreHero.Boilerplate.Web.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -34,6 +36,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
             }
             return null;
         }
+        [Authorize(Policy = Permissions.Users.View)]
         public async Task<JsonResult> OnGetCreateOrEdit(int id = 0)
         {
             var brandsResponse = await _mediator.Send(new GetAllBrandsCachedQuery());
