@@ -57,7 +57,7 @@ You can use these default credentials to generate valid JWTokens at the ../api/a
 
 ## Features Included
 
-### ASP.NET Core 5 MVC Project
+### ASP.NET Core 5.0 MVC Project
 - Slim Controllers using MediatR Library
 - Permissions Management based on Role Claims
 - Toast Notification (includes support for AJAX Calls too)
@@ -78,7 +78,7 @@ You can use these default credentials to generate valid JWTokens at the ../api/a
 - Supports Audit Logging / Activity Logging for Entity Framework Core
 - Automapper
 
-### ASP.NET Core 5 WebAPI
+### ASP.NET Core 5.0 WebAPI
 - JWT & Refresh Tokens
 - Swagger
 
