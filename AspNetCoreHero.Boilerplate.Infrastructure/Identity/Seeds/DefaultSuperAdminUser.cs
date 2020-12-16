@@ -1,13 +1,36 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Enums;
+﻿using AspNetCoreHero.Boilerplate.Application.Constants;
+using AspNetCoreHero.Boilerplate.Application.Enums;
 using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Seeds
 {
     public static class DefaultSuperAdminUser
     {
+        public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
+        {
+            var allClaims = await roleManager.GetClaimsAsync(role);
+            if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
+            {
+                await roleManager.AddClaimAsync(role, new Claim(CustomClaimTypes.Permission, permission));
+            }
+        }
+        private async static Task SeedClaimsForSuperAdmin(this RoleManager<IdentityRole> roleManager)
+        {
+
+            var adminRole = await roleManager.FindByNameAsync("SuperAdmin");
+            await roleManager.AddPermissionClaim(adminRole, Permissions.Master.Create);
+            await roleManager.AddPermissionClaim(adminRole, Permissions.Master.Edit);
+            await roleManager.AddPermissionClaim(adminRole, Permissions.Master.View);
+            await roleManager.AddPermissionClaim(adminRole, Permissions.Master.Delete);
+            await roleManager.AddPermissionClaim(adminRole, Permissions.Users.Create);
+            await roleManager.AddPermissionClaim(adminRole, Permissions.Users.Edit);
+            await roleManager.AddPermissionClaim(adminRole, Permissions.Users.View);
+            await roleManager.AddPermissionClaim(adminRole, Permissions.Users.Delete);
+        }
         public static async Task SeedAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             //Seed Default User
@@ -31,7 +54,9 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Seeds
                     await userManager.AddToRoleAsync(defaultUser, Roles.Moderator.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Roles.SuperAdmin.ToString());
+                    
                 }
+                await roleManager.SeedClaimsForSuperAdmin();
             }
         }
     }
