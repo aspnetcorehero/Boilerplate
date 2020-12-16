@@ -44,12 +44,14 @@ namespace AspNetCoreHero.Boilerplate.Api.Controllers
             return Ok(await _identityService.ConfirmEmailAsync(userId, code));
         }
         [HttpPost("forgot-password")]
+        [AllowAnonymous]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordRequest model)
         {
             await _identityService.ForgotPassword(model, Request.Headers["origin"]);
             return Ok();
         }
         [HttpPost("reset-password")]
+        [AllowAnonymous]
         public async Task<IActionResult> ResetPassword(ResetPasswordRequest model)
         {
 

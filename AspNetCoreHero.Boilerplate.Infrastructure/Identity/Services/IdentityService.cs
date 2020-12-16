@@ -48,8 +48,9 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
             var user = await _userManager.FindByEmailAsync(request.Email);
             Throw.Exception.IfNull(user, nameof(user), $"No Accounts Registered with {request.Email}.");
             var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
+            Throw.Exception.IfFalse(user.EmailConfirmed, $"Email is not confirmed for '{request.Email}'.");
+            Throw.Exception.IfFalse(user.IsActive, $"Account for '{request.Email}' is not active. Please contact the Administrator.");
             Throw.Exception.IfFalse(result.Succeeded, $"Invalid Credentials for '{request.Email}'.");
-            Throw.Exception.IfFalse(user.EmailConfirmed, $"Account Not Confirmed for '{request.Email}'.");
             JwtSecurityToken jwtSecurityToken = await GenerateJWToken(user, ipAddress);
             var response = new TokenResponse();
             response.Id = user.Id;
