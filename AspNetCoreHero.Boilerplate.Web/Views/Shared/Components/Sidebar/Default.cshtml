@@ -21,7 +21,7 @@
                 @if (User.IsInRole("SuperAdmin"))
                 {
                     <li class="nav-header">@localizer["Admin"]</li>
-                    <li class="nav-item has-treeview">
+                    <li is-active-route asp-area="Admin" class="nav-item has-treeview">
                         <a is-active-route asp-area="Admin" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
@@ -46,7 +46,7 @@
                     </li>
                 }
                 <li class="nav-header">@localizer["Master"]</li>
-                <li class="nav-item has-treeview">
+                <li is-active-route asp-area="Utlities" class="nav-item has-treeview">
                     <a is-active-route asp-area="Utlities" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -63,8 +63,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a is-active-route asp-area="Admin" class="nav-link">
+                <li is-active-route asp-area="Catalog" class="nav-item has-treeview">
+                    <a is-active-route asp-area="Catalog" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             @localizer["Catalog"]
