@@ -3,7 +3,7 @@ using System;
 
 namespace AspNetCoreHero.Boilerplate.Domain.Common
 {
-    public class AuditLog : BaseEntity
+    public class ActivityLog : BaseEntity
     {
         public DateTime DateTime { get; set; }
         public string UserId { get; set; }

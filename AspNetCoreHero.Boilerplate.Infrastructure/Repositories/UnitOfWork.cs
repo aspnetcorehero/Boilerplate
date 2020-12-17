@@ -22,7 +22,15 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
         public async Task<int> Commit(CancellationToken cancellationToken)
         {
             //Auditable Commits
-            return await _dbContext.SaveChangesAsync(_authenticatedUserService.UserId);
+            if(_authenticatedUserService.UserId == null)
+            {
+                return await _dbContext.SaveChangesAsync(cancellationToken);
+            }
+            else
+            {
+                return await _dbContext.SaveChangesAsync(_authenticatedUserService.UserId);
+            }
+           
         }
 
         public Task Rollback()

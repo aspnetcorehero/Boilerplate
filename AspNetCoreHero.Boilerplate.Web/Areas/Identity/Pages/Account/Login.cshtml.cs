@@ -1,5 +1,7 @@
-﻿using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.ActivityLog.Commands.AddLog;
+using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
 using AspNetCoreHero.Boilerplate.Web.Abstractions;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -20,14 +22,16 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IMediator _mediator;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager, IMediator mediator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _mediator = mediator;
         }
 
         [BindProperty]
@@ -76,8 +80,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var userName = Input.Email;
                 if (IsValidEmail(Input.Email))
                 {
@@ -105,10 +107,12 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
                         var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                         if (result.Succeeded)
                         {
+                            await _mediator.Send(new AddLogCommand() { userId = user.Id, Action = "Logged In" });
                             _logger.LogInformation("User logged in.");
                             _notyf.Success($"Logged in as {userName}.");
                             return LocalRedirect(returnUrl);
                         }
+                        await _mediator.Send(new AddLogCommand() { userId = user.Id, Action = "Log-In Failed" });
                         if (result.RequiresTwoFactor)
                         {
                             return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });

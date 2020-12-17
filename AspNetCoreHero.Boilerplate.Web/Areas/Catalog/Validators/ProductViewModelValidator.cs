@@ -18,6 +18,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Validators
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
+            RuleFor(p => p.Rate).GreaterThanOrEqualTo(1).WithMessage("{PropertyName} must be greater than 1");
+
         }
     }
 }
