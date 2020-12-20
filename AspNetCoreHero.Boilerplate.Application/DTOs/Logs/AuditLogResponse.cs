@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.DTOs
 {
-    public class ActivityLogResponse
+    public class AuditLogResponse
     {
         public int Id { get; set; }
         public string UserId { get; set; }

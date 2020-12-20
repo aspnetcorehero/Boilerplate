@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
 {
-    public interface IActivityLogRepository
+    public interface ILogRepository
     {
-        Task<List<ActivityLogResponse>> GetListAsync(string userId);
+        Task<List<AuditLogResponse>> GetAuditLogsAsync(string userId);
         Task AddLogAsync(string action, string userId);
     }
 }

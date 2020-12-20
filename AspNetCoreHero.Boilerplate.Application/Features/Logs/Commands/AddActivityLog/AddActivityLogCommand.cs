@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.ActivityLog.Commands.AddLog
 {
-    public partial class AddLogCommand : IRequest<Result<int>>
+    public partial class AddActivityLogCommand : IRequest<Result<int>>
     {
         public string Action { get; set; }
         public string userId { get; set; }
     }
-    public class AddLogCommandHandler : IRequestHandler<AddLogCommand, Result<int>>
+    public class AddActivityLogCommandHandler : IRequestHandler<AddActivityLogCommand, Result<int>>
     {
-        private readonly IActivityLogRepository _repo;
+        private readonly ILogRepository _repo;
 
         private IUnitOfWork _unitOfWork { get; set; }
-        public AddLogCommandHandler(IActivityLogRepository repo, IUnitOfWork unitOfWork)
+        public AddActivityLogCommandHandler(ILogRepository repo, IUnitOfWork unitOfWork)
         {
             _repo = repo;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Result<int>> Handle(AddLogCommand request, CancellationToken cancellationToken)
+        public async Task<Result<int>> Handle(AddActivityLogCommand request, CancellationToken cancellationToken)
         {
             await _repo.AddLogAsync(request.Action,request.userId);
             await _unitOfWork.Commit(cancellationToken);

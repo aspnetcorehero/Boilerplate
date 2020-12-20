@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 {
-    public class ActivityLogRepository : IActivityLogRepository
+    public class LogRepository : ILogRepository
     {
         private readonly IMapper _mapper;
         private readonly IRepositoryAsync<Audit> _repository;
         private readonly IDateTimeService _dateTimeService;
-        public ActivityLogRepository(IRepositoryAsync<Audit> repository, IMapper mapper, IDateTimeService dateTimeService)
+        public LogRepository(IRepositoryAsync<Audit> repository, IMapper mapper, IDateTimeService dateTimeService)
         {
             _repository = repository;
             _mapper = mapper;
@@ -38,18 +38,18 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             await _repository.AddAsync(audit);
         }
 
-        public async Task<List<ActivityLogResponse>> GetListAsync(string userId)
+        public async Task<List<AuditLogResponse>> GetAuditLogsAsync(string userId)
         {
             var logs = await _repository.Entities.Where(a => a.UserId == userId).OrderByDescending(a => a.DateTime).Take(250).ToListAsync();
-            var mappedLogs = _mapper.Map<List<ActivityLogResponse>>(logs);
+            var mappedLogs = _mapper.Map<List<AuditLogResponse>>(logs);
             return mappedLogs;
         }
     }
-    public class ActivityLogProfile : Profile
+    public class LogProfile : Profile
     {
-        public ActivityLogProfile()
+        public LogProfile()
         {
-            CreateMap<ActivityLogResponse, Audit>().ReverseMap();
+            CreateMap<AuditLogResponse, Audit>().ReverseMap();
         }
     }
 }

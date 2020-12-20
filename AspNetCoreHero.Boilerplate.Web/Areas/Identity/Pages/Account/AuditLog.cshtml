@@ -1,8 +1,8 @@
 ﻿@page
-@model AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account.ActivityLogModel
+@model AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account.AuditLogModel
 
 @{
-    ViewData["Title"] = localizer["Activity Log"];
+    ViewData["Title"] = localizer["Audit Log"];
     ViewData["Caption"] = localizer["View your Recent 250 Logs here"];
 }
 <div class="card">
@@ -20,7 +20,7 @@
                         @localizer["Module"]
                     </th>
                     <th>
-                        @localizer["Primary Key"]
+                        @localizer["Key"]
                     </th>
                     <th>
                         @localizer["Affected Columns"]
@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var user in Model.ActivityLogResponses)
+                @foreach (var user in Model.AuditLogResponses)
                 {
                     <tr>
                         <td>
