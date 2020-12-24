@@ -29,14 +29,14 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Upda
 
                 if (product == null)
                 {
-                    throw new ApiException($"Product Not Found.");
+                    return Result<int>.Fail($"Product Not Found.");
                 }
                 else
                 {
-                    product.Name = command.Name;
-                    product.Rate = command.Rate;
-                    product.Description = command.Description;
-                    product.BrandId = command.BrandId;
+                    product.Name = command.Name ?? product.Name;
+                    product.Rate = (command.Rate == 0) ? product.Rate : command.Rate;
+                    product.Description = command.Description ?? product.Description;
+                    product.BrandId = (command.BrandId == 0) ? product.BrandId : command.BrandId;
                     await _productRepository.UpdateAsync(product);
                     await _unitOfWork.Commit(cancellationToken);
                     return Result<int>.Success(product.Id);

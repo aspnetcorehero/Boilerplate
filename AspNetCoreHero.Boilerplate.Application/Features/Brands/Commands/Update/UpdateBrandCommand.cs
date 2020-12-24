@@ -28,13 +28,13 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Update
 
                 if (brand == null)
                 {
-                    throw new ApiException($"Product Not Found.");
+                    return Result<int>.Fail($"Brand Not Found.");
                 }
                 else
                 {
-                    brand.Name = command.Name;
-                    brand.Tax = command.Tax;
-                    brand.Description = command.Description;
+                    brand.Name = command.Name ?? brand.Name;
+                    brand.Tax = (command.Tax == 0) ? brand.Tax : command.Tax;
+                    brand.Description = command.Description ?? brand.Description;
                     await _brandRepository.UpdateAsync(brand);
                     await _unitOfWork.Commit(cancellationToken);
                     return Result<int>.Success(brand.Id);
