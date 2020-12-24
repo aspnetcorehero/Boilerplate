@@ -50,6 +50,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 UserId = userId,
                 UserRoles = viewModel
             };
+            
             return View(model);
         }
         public async Task<IActionResult> Update(string id, ManageUserRolesViewModel model)
@@ -61,6 +62,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
             await _signInManager.RefreshSignInAsync(currentUser);
             await Infrastructure.Identity.Seeds.DefaultSuperAdminUser.SeedAsync(_userManager, _roleManager);
+            _notify.Success($"Updated Roles for User '{user.Email}'");
             return RedirectToAction("Index", new { userId = id });
         }
     }

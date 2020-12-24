@@ -40,8 +40,9 @@
                             </form>
                             @if (role.Name != "SuperAdmin")
                             {
-                                <a asp-area="Admin" asp-route-roleId="@role.Id" class="dropdown-item">
-                                    <i class="fas fa-lock"></i> @localizer["Permissions"]
+
+                                <a style='margin-right:16px' asp-controller="Permission" asp-action="Index" asp-route-roleId="@role.Id" class="dropdown-item">
+                                    <i class="fas fa-wrench"></i> @localizer["Manage Permissions"]
                                 </a>
                             }
                         </div>
