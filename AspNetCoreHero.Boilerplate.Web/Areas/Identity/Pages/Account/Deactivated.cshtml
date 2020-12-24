@@ -1,7 +1,7 @@
 ﻿@page
-@model RegisterConfirmationModel
+@model AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account.DeactivatedModel
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = "Deactivated";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Confirm Email</title>
+    <title>Account Not Active</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <partial name="_Styles" />
@@ -17,10 +17,10 @@
 <body class="hold-transition login-page" style="background: white!important;">
     <div class="login-box" style="width:600px!important;">
         <div class="login-logo">
-            <a href="https://codewithmukesh.com">You are <b>Registered</b>!</a>
+            <a href="https://codewithmukesh.com">Account <b>Not Active</b>!</a>
         </div>
         <!-- /.login-logo -->
-        <p class="login-box-msg">Please check your email (@Model.Email) to confirm your account. Additionally, contact your Administrator to activate your account once you have verified your email address.</p>
+        <p class="login-box-msg">You account is not activated. Please contact your Administrator to activate your account.</p>
         <!-- /.login-card-body -->
         <div style="text-align: -webkit-center;">
             <p class="mb-1">

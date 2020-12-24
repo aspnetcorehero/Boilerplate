@@ -4,6 +4,7 @@
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Header;
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Logout;
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.FormModal;
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.ImageModal;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +34,7 @@
         @(await Component.InvokeAsync<FooterViewComponent>())
         @(await Component.InvokeAsync<LogoutViewComponent>())
         @(await Component.InvokeAsync<FormModalViewComponent>())
+        @(await Component.InvokeAsync<ImageModalViewComponent>())
         @*<partial name="AdminLTE/_LogoutModal" />
             <partial name="AdminLTE/Modals/_FormModal" />
             <partial name="AdminLTE/_ImageModal" />*@

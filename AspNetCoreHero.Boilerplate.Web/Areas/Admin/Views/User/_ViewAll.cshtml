@@ -81,7 +81,7 @@
                             Action
                         </button>
                         <div class="dropdown-menu shadow animated--grow-in">
-                            <a style='margin-right:16px' asp-route-userId="@user.Id" class="dropdown-item">
+                            <a style='margin-right:16px' asp-area="Identity" asp-page="/Profile" asp-route-userId="@user.Id" class="dropdown-item">
                                 <i class="fas fa-user"></i> @localizer["Profile"]
                             </a>
                             <a style='margin-right:16px' asp-controller="UserRole" asp-action="Index" asp-route-userId="@user.Id" class="dropdown-item">

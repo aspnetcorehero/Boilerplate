@@ -1,67 +1,105 @@
 ﻿@page
+@using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Culture;
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewData["Title"]</title>
+    <partial name="_Styles" />
+</head>
+<body>
+    <nav id="navigationBar" class="main-header navbar navbar-expand navbar-light" style="margin:0 !important">
+        <ul class="navbar-nav" style=" margin-inline-start: auto; ">
+            <li class="nav-item dropdown no-arrow">
+                @(await Component.InvokeAsync<CultureViewComponent>())
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="darkSwitch">
+                <label class="custom-control-label" style="font-weight:400" for="darkSwitch">@localizer["Dark Mode"]</label>
+            </div>
+        </ul>
 
-<h1>@ViewData["Title"]</h1>
+    </nav>
+    <div class="content-wrapper mrl-zero" id="contentWrapper">
+        <div class="container">
+            <div class="row justify-content-center">
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to register.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+                <div class="col-xl-10 col-lg-12 col-md-9">
+                    <div class="card o-hidden border-0 my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-5 d-none d-lg-block" style=" background: url('/images/bg-register.jpg');
+        background-position: center;
+        background-size: cover;
+    "></div>
+                                <div class="col-lg-7">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">@localizer["Register"]</h1>
+                                        </div>
+                                        <form class="user" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                            <small><div asp-validation-summary="All" class="text-danger"></div></small>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input asp-for="Input.FirstName" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="@localizer["First Name"]">
+                                                    <small><span asp-validation-for="Input.FirstName" class="text-danger"></span></small>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input asp-for="Input.LastName" type="text" class="form-control form-control-user" id="exampleLastName" placeholder="@localizer["Last Name"]">
+                                                    <small><span asp-validation-for="Input.LastName" class="text-danger"></span></small>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input asp-for="Input.Email" type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="@localizer["Email Address"]">
+                                                <small><span asp-validation-for="Input.Email" class="text-danger"></span></small>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input asp-for="Input.Password" autocomplete="off" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="@localizer["Password"]">
+                                                    <small><span asp-validation-for="Input.Password" class="text-danger"></span></small>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input asp-for="Input.ConfirmPassword" autocomplete="off" type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="@localizer["Repeat Password"]">
+                                                    <small><span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span></small>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                @localizer["Register Account"]
+                                            </button>
+                                        </form>
+                                        <script type="text/javascript" language=javascript>
+                                            $.validator.unobtrusive.parse(document);
+                                        </script>
+                                        <hr>
+                                        <div class="text-center">
+                                            <a class="small" asp-area="Identity" asp-page="/account/forgotpassword"> @localizer["Forgot Password?"]</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="small" asp-area="Identity" asp-page="/account/login"> @localizer["Already have an account? Login!"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+                    </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+                </div>
+            </div>
+        </div>
+    </div>
+    <partial name="_Scripts" />
+    @await Component.InvokeAsync("Notyf")
+</body>
+</html>

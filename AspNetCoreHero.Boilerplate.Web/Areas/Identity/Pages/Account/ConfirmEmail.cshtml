@@ -1,7 +1,38 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = "Confirm email";
+    ViewData["Title"] = "Email Confirmed";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Confirm Email</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <partial name="_Styles" />
+</head>
+<body class="hold-transition login-page" style="background: white!important;">
+    <div class="login-box" style="width:600px!important;">
+        <div class="login-logo">
+            <a href="https://codewithmukesh.com">Email <b>Confirmed</b>!</a>
+        </div>
+        <!-- /.login-logo -->
+        <p class="login-box-msg">Your mail id is confirmed. Additionally, contact your Administrator to activate your account.</p>
+        <!-- /.login-card-body -->
+        <div style="text-align: -webkit-center;">
+            <p class="mb-1">
+                <a type="button" asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary">Sign In</a>
+            </p>
+            <br />
+            <small style="font-size:15px">
+                Made with <span style="color: #e25555;">&hearts;</span> by <a href="http://codewithmukesh.com">codewithmukesh</a>.
+            </small>
 
-<h1>@ViewData["Title"]</h1>
+        </div>
+    </div>
+    <partial name="_Scripts" />
+</body>
+</html>
