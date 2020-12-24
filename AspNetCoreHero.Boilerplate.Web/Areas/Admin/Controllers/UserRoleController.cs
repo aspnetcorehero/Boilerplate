@@ -3,7 +3,6 @@ using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +22,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+
         public async Task<IActionResult> Index(string userId)
         {
             var viewModel = new List<UserRolesViewModel>();
@@ -50,9 +50,10 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 UserId = userId,
                 UserRoles = viewModel
             };
-            
+
             return View(model);
         }
+
         public async Task<IActionResult> Update(string id, ManageUserRolesViewModel model)
         {
             var user = await _userManager.FindByIdAsync(id);

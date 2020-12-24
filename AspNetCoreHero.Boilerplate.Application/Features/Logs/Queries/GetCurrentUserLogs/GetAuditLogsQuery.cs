@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Features.ActivityLog.Queries.GetUserLogs
 {
-
     public class GetAuditLogsQuery : IRequest<Result<List<AuditLogResponse>>>
     {
         public string userId { get; set; }
+
         public GetAuditLogsQuery()
         {
-
         }
     }
 

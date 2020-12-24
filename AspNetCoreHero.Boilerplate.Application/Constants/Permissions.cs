@@ -14,6 +14,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Constants
                 $"Permissions.{module}.Delete",
             };
         }
+
         public static class Dashboard
         {
             public const string View = "Permissions.Dashboard.View";
@@ -21,6 +22,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Constants
             public const string Edit = "Permissions.Dashboard.Edit";
             public const string Delete = "Permissions.Dashboard.Delete";
         }
+
         public static class Products
         {
             public const string View = "Permissions.Products.View";
@@ -28,6 +30,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Constants
             public const string Edit = "Permissions.Products.Edit";
             public const string Delete = "Permissions.Products.Delete";
         }
+
         public static class Users
         {
             public const string View = "Permissions.Users.View";
@@ -35,6 +38,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Constants
             public const string Edit = "Permissions.Users.Edit";
             public const string Delete = "Permissions.Users.Delete";
         }
+
         public static class Brands
         {
             public const string View = "Permissions.Brands.View";

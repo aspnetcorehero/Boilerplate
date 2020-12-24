@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models
 {
@@ -10,6 +7,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models
         public string RoleId { get; set; }
         public IList<RoleClaimsViewModel> RoleClaims { get; set; }
     }
+
     public class RoleClaimsViewModel
     {
         public string Type { get; set; }

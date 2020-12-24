@@ -10,10 +10,12 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
     public class RepositoryAsync<T> : IRepositoryAsync<T> where T : class
     {
         private readonly ApplicationDbContext _dbContext;
+
         public RepositoryAsync(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
+
         public IQueryable<T> Entities => _dbContext.Set<T>();
 
         public async Task<T> AddAsync(T entity)

@@ -10,6 +10,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetById
     public class GetBrandByIdQuery : IRequest<Result<GetBrandByIdResponse>>
     {
         public int Id { get; set; }
+
         public class GetProductByIdQueryHandler : IRequestHandler<GetBrandByIdQuery, Result<GetBrandByIdResponse>>
         {
             private readonly IBrandCacheRepository _brandCache;
@@ -20,6 +21,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetById
                 _brandCache = productCache;
                 _mapper = mapper;
             }
+
             public async Task<Result<GetBrandByIdResponse>> Handle(GetBrandByIdQuery query, CancellationToken cancellationToken)
             {
                 var product = await _brandCache.GetByIdAsync(query.Id);

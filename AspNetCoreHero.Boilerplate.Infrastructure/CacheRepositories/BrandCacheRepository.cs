@@ -5,7 +5,6 @@ using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
 using AspNetCoreHero.Extensions.Caching;
 using AspNetCoreHero.ThrowR;
 using Microsoft.Extensions.Caching.Distributed;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,11 +14,13 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
     {
         private readonly IDistributedCache _distributedCache;
         private readonly IBrandRepository _brandRepository;
+
         public BrandCacheRepository(IDistributedCache distributedCache, IBrandRepository brandRepository)
         {
             _distributedCache = distributedCache;
             _brandRepository = brandRepository;
         }
+
         public async Task<Brand> GetByIdAsync(int brandId)
         {
             string cacheKey = BrandCacheKeys.GetKey(brandId);

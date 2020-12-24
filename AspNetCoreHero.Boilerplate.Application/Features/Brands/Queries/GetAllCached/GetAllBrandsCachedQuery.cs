@@ -12,7 +12,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllC
     {
         public GetAllBrandsCachedQuery()
         {
-
         }
     }
 

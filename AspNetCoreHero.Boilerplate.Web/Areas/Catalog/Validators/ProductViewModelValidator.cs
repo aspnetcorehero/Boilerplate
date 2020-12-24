@@ -5,7 +5,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Validators
 {
     public class ProductViewModelValidator : AbstractValidator<ProductViewModel>
     {
-
         public ProductViewModelValidator()
         {
             RuleFor(p => p.Barcode)
@@ -19,7 +18,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Validators
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
             RuleFor(p => p.Rate).GreaterThanOrEqualTo(1).WithMessage("{PropertyName} must be greater than 1");
-
         }
     }
 }

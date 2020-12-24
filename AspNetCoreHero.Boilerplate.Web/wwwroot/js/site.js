@@ -1,11 +1,10 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('.form-image').click(function () { $('#customFile').trigger('click'); });
     $(function () {
         $('.selectpicker').selectpicker();
     });
-	setTimeout(function () {
-		$('body').addClass('loaded');
+    setTimeout(function () {
+        $('body').addClass('loaded');
     }, 200);
 
     jQueryModalGet = (url, title) => {
@@ -30,7 +29,6 @@ $(document).ready(function () {
         } catch (ex) {
             console.log(ex)
         }
-       
     }
 
     jQueryModalPost = form => {
@@ -82,6 +80,4 @@ $(document).ready(function () {
         //prevent default form submit event
         return false;
     }
-
 });
-

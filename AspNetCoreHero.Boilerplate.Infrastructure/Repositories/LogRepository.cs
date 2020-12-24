@@ -1,15 +1,11 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.DTOs;
-using AspNetCoreHero.Boilerplate.Application.Interfaces;
-using AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.EntityFrameworkCore.Auditing.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
@@ -19,13 +15,13 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
         private readonly IMapper _mapper;
         private readonly IRepositoryAsync<Audit> _repository;
         private readonly IDateTimeService _dateTimeService;
+
         public LogRepository(IRepositoryAsync<Audit> repository, IMapper mapper, IDateTimeService dateTimeService)
         {
             _repository = repository;
             _mapper = mapper;
             _dateTimeService = dateTimeService;
         }
-
 
         public async Task AddLogAsync(string action, string userId)
         {
@@ -45,6 +41,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             return mappedLogs;
         }
     }
+
     public class LogProfile : Profile
     {
         public LogProfile()

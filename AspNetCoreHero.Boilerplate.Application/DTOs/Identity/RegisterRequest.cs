@@ -13,6 +13,7 @@ namespace AspNetCoreHero.Boilerplate.Application.DTOs.Identity
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
         [Required]
         [MinLength(6)]
         public string UserName { get; set; }

@@ -45,6 +45,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
             _signInManager = signInManager;
             _mailService = mailService;
         }
+
         public async Task<Result<TokenResponse>> GetTokenAsync(TokenRequest request, string ipAddress)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
@@ -68,6 +69,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
             response.RefreshToken = refreshToken.Token;
             return Result<TokenResponse>.Success(response, "Authenticated");
         }
+
         private async Task<JwtSecurityToken> GenerateJWToken(ApplicationUser user, string ipAddress)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
@@ -116,6 +118,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
             // convert random bytes to hex string
             return BitConverter.ToString(randomBytes).Replace("-", "");
         }
+
         private RefreshToken GenerateRefreshToken(string ipAddress)
         {
             return new RefreshToken
@@ -126,6 +129,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
                 CreatedByIp = ipAddress
             };
         }
+
         public async Task<Result<string>> RegisterAsync(RegisterRequest request, string origin)
         {
             var userWithSameUserName = await _userManager.FindByNameAsync(request.UserName);
@@ -162,6 +166,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
                 throw new ApiException($"Email {request.Email } is already registered.");
             }
         }
+
         private async Task<string> SendVerificationEmail(ApplicationUser user, string origin)
         {
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -188,6 +193,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
                 throw new ApiException($"An error occured while confirming {user.Email}.");
             }
         }
+
         public async Task ForgotPassword(ForgotPasswordRequest model, string origin)
         {
             var account = await _userManager.FindByEmailAsync(model.Email);

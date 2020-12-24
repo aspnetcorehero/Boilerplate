@@ -13,7 +13,6 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-
         public static void AddPersistenceContexts(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -23,6 +22,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Extensions
         public static void AddRepositories(this IServiceCollection services)
         {
             #region Repositories
+
             services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductCacheRepository, ProductCacheRepository>();
@@ -30,7 +30,8 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Extensions
             services.AddTransient<IBrandCacheRepository, BrandCacheRepository>();
             services.AddTransient<ILogRepository, LogRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            #endregion
+
+            #endregion Repositories
         }
     }
 }

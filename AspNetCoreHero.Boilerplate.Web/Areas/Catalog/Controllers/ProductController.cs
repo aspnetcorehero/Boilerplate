@@ -26,6 +26,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
             var model = new ProductViewModel();
             return View(model);
         }
+
         public async Task<IActionResult> LoadAll()
         {
             var response = await _mediator.Send(new GetAllProductsCachedQuery());
@@ -36,6 +37,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
             }
             return null;
         }
+
         [Authorize(Policy = Permissions.Users.View)]
         public async Task<JsonResult> OnGetCreateOrEdit(int id = 0)
         {
@@ -56,7 +58,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                 var response = await _mediator.Send(new GetProductByIdQuery() { Id = id });
                 if (response.Succeeded)
                 {
-
                     var productViewModel = _mapper.Map<ProductViewModel>(response.Data);
                     if (brandsResponse.Succeeded)
                     {
@@ -68,6 +69,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                 return null;
             }
         }
+
         [HttpPost]
         public async Task<JsonResult> OnPostCreateOrEdit(int id, ProductViewModel product)
         {
@@ -89,7 +91,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                     var updateProductCommand = _mapper.Map<UpdateProductCommand>(product);
                     var result = await _mediator.Send(updateProductCommand);
                     if (result.Succeeded) _notify.Information($"Product with ID {result.Data} Updated.");
-
                 }
                 if (Request.Form.Files.Count > 0)
                 {
@@ -109,15 +110,14 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                     _notify.Error(response.Message);
                     return null;
                 }
-
             }
             else
             {
                 var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", product);
                 return new JsonResult(new { isValid = false, html = html });
             }
-
         }
+
         [HttpPost]
         public async Task<JsonResult> OnPostDelete(int id)
         {

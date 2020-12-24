@@ -27,11 +27,13 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+
         [Authorize(Policy = Permissions.Users.View)]
         public IActionResult Index()
         {
             return View();
         }
+
         public async Task<IActionResult> LoadAll()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -39,10 +41,12 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             var model = _mapper.Map<IEnumerable<UserViewModel>>(allUsersExceptCurrentUser);
             return PartialView("_ViewAll", model);
         }
+
         public async Task<IActionResult> OnGetCreate()
         {
             return new JsonResult(new { isValid = true, html = await _viewRenderer.RenderViewToStringAsync("_Create", new UserViewModel()) });
         }
+
         [HttpPost]
         public async Task<IActionResult> OnPostCreate(UserViewModel userModel)
         {
@@ -61,7 +65,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 var result = await _userManager.CreateAsync(user, userModel.Password);
                 if (result.Succeeded)
                 {
-
                     await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -77,10 +80,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 }
                 var html = await _viewRenderer.RenderViewToStringAsync("_Create", userModel);
                 return new JsonResult(new { isValid = false, html = html });
-
             }
             return default;
         }
-        
     }
 }

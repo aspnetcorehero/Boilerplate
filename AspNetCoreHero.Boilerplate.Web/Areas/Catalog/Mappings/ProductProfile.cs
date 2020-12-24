@@ -7,7 +7,7 @@ using AutoMapper;
 
 namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Mappings
 {
-    class ProductProfile : Profile
+    internal class ProductProfile : Profile
     {
         public ProductProfile()
         {

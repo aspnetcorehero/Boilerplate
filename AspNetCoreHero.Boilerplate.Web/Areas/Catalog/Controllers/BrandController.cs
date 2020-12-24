@@ -1,17 +1,12 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Constants;
-using AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Create;
+﻿using AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Create;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Delete;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Update;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetById;
 using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
@@ -24,6 +19,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
             var model = new BrandViewModel();
             return View(model);
         }
+
         public async Task<IActionResult> LoadAll()
         {
             var response = await _mediator.Send(new GetAllBrandsCachedQuery());
@@ -34,6 +30,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
             }
             return null;
         }
+
         public async Task<JsonResult> OnGetCreateOrEdit(int id = 0)
         {
             var brandsResponse = await _mediator.Send(new GetAllBrandsCachedQuery());
@@ -48,13 +45,13 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                 var response = await _mediator.Send(new GetBrandByIdQuery() { Id = id });
                 if (response.Succeeded)
                 {
-
                     var brandViewModel = _mapper.Map<BrandViewModel>(response.Data);
                     return new JsonResult(new { isValid = true, html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", brandViewModel) });
                 }
                 return null;
             }
         }
+
         [HttpPost]
         public async Task<JsonResult> OnPostCreateOrEdit(int id, BrandViewModel brand)
         {
@@ -76,7 +73,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                     var updateBrandCommand = _mapper.Map<UpdateBrandCommand>(brand);
                     var result = await _mediator.Send(updateBrandCommand);
                     if (result.Succeeded) _notify.Information($"Brand with ID {result.Data} Updated.");
-
                 }
                 var response = await _mediator.Send(new GetAllBrandsCachedQuery());
                 if (response.Succeeded)
@@ -90,15 +86,14 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Controllers
                     _notify.Error(response.Message);
                     return null;
                 }
-
             }
             else
             {
                 var html = await _viewRenderer.RenderViewToStringAsync("_CreateOrEdit", brand);
                 return new JsonResult(new { isValid = false, html = html });
             }
-
         }
+
         [HttpPost]
         public async Task<JsonResult> OnPostDelete(int id)
         {

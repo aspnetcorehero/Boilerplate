@@ -50,7 +50,6 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             await _repository.UpdateAsync(product);
             await _distributedCache.RemoveAsync(CacheKeys.ProductCacheKeys.ListKey);
             await _distributedCache.RemoveAsync(CacheKeys.ProductCacheKeys.GetKey(product.Id));
-
         }
     }
 }

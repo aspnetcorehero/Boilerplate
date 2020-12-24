@@ -17,12 +17,14 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+
         public PermissionController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
         public async Task<ActionResult> Index(string roleId)
         {
             var model = new PermissionViewModel();
@@ -51,6 +53,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             _notify.Success($"Updated Claims / Permissions for Role '{role.Name}'");
             return View(model);
         }
+
         public async Task<IActionResult> Update(PermissionViewModel model)
         {
             var role = await _roleManager.FindByIdAsync(model.RoleId);

@@ -33,11 +33,13 @@ namespace AspNetCoreHero.Boilerplate.Api.Extensions
             services.AddTransient<IMailService, SMTPMailService>();
             services.AddTransient<IAuthenticatedUserService, AuthenticatedUserService>();
         }
+
         public static void AddEssentials(this IServiceCollection services)
         {
             services.RegisterSwagger();
             services.AddVersioning();
         }
+
         private static void RegisterSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -83,6 +85,7 @@ namespace AspNetCoreHero.Boilerplate.Api.Extensions
                 });
             });
         }
+
         private static void AddVersioning(this IServiceCollection services)
         {
             services.AddApiVersioning(config =>
@@ -92,6 +95,7 @@ namespace AspNetCoreHero.Boilerplate.Api.Extensions
                 config.ReportApiVersions = true;
             });
         }
+
         public static void AddContextInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))
@@ -105,7 +109,6 @@ namespace AspNetCoreHero.Boilerplate.Api.Extensions
             {
                 services.AddDbContext<IdentityContext>(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
                 services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection"), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
             }
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {

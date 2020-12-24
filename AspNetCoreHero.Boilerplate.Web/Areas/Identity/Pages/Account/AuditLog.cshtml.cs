@@ -13,6 +13,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
         private readonly IMediator _mediator;
         private readonly IAuthenticatedUserService _userService;
         public List<AuditLogResponse> AuditLogResponses;
+
         public AuditLogModel(IMediator mediator, IAuthenticatedUserService userService)
         {
             _mediator = mediator;

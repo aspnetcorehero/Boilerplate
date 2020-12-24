@@ -11,15 +11,18 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Upda
     {
         public int Id { get; set; }
         public byte[] Image { get; set; }
+
         public class UpdateProductImageCommandHandler : IRequestHandler<UpdateProductImageCommand, Result<int>>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IProductRepository _productRepository;
+
             public UpdateProductImageCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork)
             {
                 _productRepository = productRepository;
                 _unitOfWork = unitOfWork;
             }
+
             public async Task<Result<int>> Handle(UpdateProductImageCommand command, CancellationToken cancellationToken)
             {
                 var product = await _productRepository.GetByIdAsync(command.Id);

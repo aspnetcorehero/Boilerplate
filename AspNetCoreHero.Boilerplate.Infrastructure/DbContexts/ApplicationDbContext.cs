@@ -21,11 +21,13 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.DbContexts
             _dateTime = dateTime;
             _authenticatedUser = authenticatedUser;
         }
+
         public DbSet<Product> Products { get; set; }
 
         public IDbConnection Connection => Database.GetDbConnection();
 
         public bool HasChanges => ChangeTracker.HasChanges();
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>().ToList())
@@ -37,6 +39,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.DbContexts
                         entry.Entity.CreatedOn = _dateTime.NowUtc;
                         entry.Entity.CreatedBy = _authenticatedUser.UserId;
                         break;
+
                     case EntityState.Modified:
                         entry.Entity.LastModifiedOn = _dateTime.NowUtc;
                         entry.Entity.LastModifiedBy = _authenticatedUser.UserId;
@@ -45,6 +48,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.DbContexts
             }
             return await base.SaveChangesAsync(cancellationToken);
         }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             foreach (var property in builder.Model.GetEntityTypes()

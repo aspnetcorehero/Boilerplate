@@ -13,8 +13,7 @@ namespace AspNetCoreHero.Boilerplate.Application.DTOs.Identity
         public bool IsVerified { get; set; }
         public string JWToken { get; set; }
         public DateTime IssuedOn { get; set; }
-        public DateTime ExpiresOn {get; set; }
-
+        public DateTime ExpiresOn { get; set; }
 
         [JsonIgnore]
         public string RefreshToken { get; set; }

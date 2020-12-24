@@ -26,6 +26,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Helpers
             }
             return;
         }
+
         public static void GetPermissions(this List<RoleClaimsViewModel> allPermissions, Type policy, string roleId)
         {
             FieldInfo[] fields = policy.GetFields(BindingFlags.Static | BindingFlags.Public);
@@ -35,6 +36,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Helpers
                 allPermissions.Add(new RoleClaimsViewModel { Value = fi.GetValue(null).ToString(), Type = "Permissions" });
             }
         }
+
         public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string permission)
         {
             var allClaims = await roleManager.GetClaimsAsync(role);

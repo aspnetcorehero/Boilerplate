@@ -23,7 +23,6 @@ namespace AspNetCoreHero.Boilerplate.Web
                 var logger = loggerFactory.CreateLogger("app");
                 try
                 {
-
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 

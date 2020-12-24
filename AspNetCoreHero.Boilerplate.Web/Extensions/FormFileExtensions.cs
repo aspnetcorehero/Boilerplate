@@ -2,6 +2,7 @@
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using System.IO;
+
 namespace AspNetCoreHero.Boilerplate.Web.Extensions
 {
     public static class FormFileExtensions

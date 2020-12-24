@@ -7,6 +7,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models
         public string UserId { get; set; }
         public IList<UserRolesViewModel> UserRoles { get; set; }
     }
+
     public class UserRolesViewModel
     {
         public string RoleName { get; set; }

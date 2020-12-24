@@ -14,6 +14,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
     {
         private readonly IDistributedCache _distributedCache;
         private readonly IProductRepository _productRepository;
+
         public ProductCacheRepository(IDistributedCache distributedCache, IProductRepository productRepository)
         {
             _distributedCache = distributedCache;

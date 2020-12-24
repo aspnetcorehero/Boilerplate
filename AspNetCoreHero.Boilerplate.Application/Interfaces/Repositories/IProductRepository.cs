@@ -13,7 +13,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
 
         Task<Product> GetByIdAsync(int productId);
 
-
         Task<int> InsertAsync(Product product);
 
         Task UpdateAsync(Product product);

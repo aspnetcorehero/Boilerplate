@@ -27,6 +27,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account.Manage
 
         [TempData]
         public string StatusMessage { get; set; }
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -34,13 +35,17 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account.Manage
         {
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
+
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
+
             [Display(Name = "Username")]
             public string Username { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
             [Display(Name = "Profile Picture")]
             public byte[] ProfilePicture { get; set; }
         }
@@ -63,6 +68,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account.Manage
                 ProfilePicture = profilePicture
             };
         }
+
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -102,7 +108,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account.Manage
             var lastName = user.LastName;
             if (Input.FirstName != firstName)
             {
-
                 user.FirstName = Input.FirstName;
                 await _userManager.UpdateAsync(user);
             }

@@ -1,12 +1,10 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Enums;
-using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
+﻿using AspNetCoreHero.Boilerplate.Infrastructure.Identity.Models;
 using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
@@ -22,17 +20,19 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
+
         public async Task<IActionResult> Index()
         {
-            
             return View();
         }
+
         public async Task<IActionResult> LoadAll()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             var model = _mapper.Map<IEnumerable<RoleViewModel>>(roles);
             return PartialView("_ViewAll", model);
         }
+
         public async Task<IActionResult> OnGetCreate(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -44,8 +44,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 var roleviewModel = _mapper.Map<RoleViewModel>(role);
                 return new JsonResult(new { isValid = true, html = await _viewRenderer.RenderViewToStringAsync("_Create", roleviewModel) });
             }
-            
         }
+
         [HttpPost]
         public async Task<IActionResult> OnPostCreate(RoleViewModel role)
         {
@@ -76,6 +76,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 return new JsonResult(new { isValid = false, html = html });
             }
         }
+
         public async Task<JsonResult> OnPostDelete(string id)
         {
             var existingRole = await _roleManager.FindByIdAsync(id);
@@ -100,7 +101,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
                 {
                     _notify.Error("Role is being Used by another User. Cannot Delete.");
                 }
-
             }
             else
             {

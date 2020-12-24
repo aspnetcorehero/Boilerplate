@@ -1,13 +1,12 @@
 const darkSwitch = document.getElementById('darkSwitch');
 window.addEventListener('load', () => {
-  if (darkSwitch) {
-    initTheme();
-    darkSwitch.addEventListener('change', () => {
-      resetTheme();
-    });
-  }
+    if (darkSwitch) {
+        initTheme();
+        darkSwitch.addEventListener('change', () => {
+            resetTheme();
+        });
+    }
 });
-
 
 /**
  * Summary: function that adds or removes the attribute 'data-theme' depending if
@@ -21,10 +20,10 @@ window.addEventListener('load', () => {
  * @return {void}
  */
 function initTheme() {
-  const darkThemeSelected =
-    localStorage.getItem('darkSwitch') !== null &&
-    localStorage.getItem('darkSwitch') === 'dark';
-  darkSwitch.checked = darkThemeSelected;
+    const darkThemeSelected =
+        localStorage.getItem('darkSwitch') !== null &&
+        localStorage.getItem('darkSwitch') === 'dark';
+    darkSwitch.checked = darkThemeSelected;
     if (darkThemeSelected) {
         document.body.setAttribute('data-theme', 'dark');
         $('#navigationBar').addClass('navbar-dark').removeClass('navbar-light');
@@ -50,9 +49,7 @@ function initTheme() {
         $('.loader-section').attr('style', 'background: #ffffff!important;');
         $("#brand-logo").attr("src", "/images/logo-transparent-dark.png");
     }
-    
 }
-
 
 /**
  * Summary: resetTheme checks if the switch is 'on' or 'off' and if it is toggled
@@ -61,29 +58,29 @@ function initTheme() {
  * @return {void}
  */
 function resetTheme() {
-  if (darkSwitch.checked) {
-      document.body.setAttribute('data-theme', 'dark');
-      $('#sideBar').addClass('sidebar-dark-primary').removeClass('sidebar-light-primary');
-      $('#navigationBar').addClass('navbar-dark').removeClass('navbar-light');
-      $('.content-wrapper').attr('style', 'background-color: #111');
-      $('.card').attr('style', 'background-color: #212121');
-      $('.main-footer').attr('style', 'background-color: #212121');
-      $('.form-control').attr('style', 'background-color: #212121!important;color:white;border:1px solid #3c3c3c');
-      $('.modal-content').attr('style', 'background-color: #212121!important;');
-      $('.loader-section').attr('style', 'background: #212121!important;');
-      $("#brand-logo").attr("src", "/images/logo-transparent-light.png");
-    localStorage.setItem('darkSwitch', 'dark');
-  } else {
-      document.body.removeAttribute('data-theme');
-      $('#sideBar').addClass('sidebar-light-primary').removeClass('sidebar-dark-primary');
-      $('#navigationBar').removeClass('navbar-dark').addClass('navbar-light');
-      $('.content-wrapper').attr('style', 'background-color: #f4f6f9');
-      $('.card').attr('style', 'background-color: ##ffffff');
-      $('.main-footer').attr('style', 'background-color: #ffffff');
-      $('.form-control').attr('style', 'background-color: #ffffff!important;color:black;border:1px solid #ced4da');
-      $('.modal-content').attr('style', 'background-color: #ffffff!important;');
-      $('.loader-section').attr('style', 'background: #ffffff!important;');
-      $("#brand-logo").attr("src", "/images/logo-transparent-dark.png");
-    localStorage.removeItem('darkSwitch');
-  }
+    if (darkSwitch.checked) {
+        document.body.setAttribute('data-theme', 'dark');
+        $('#sideBar').addClass('sidebar-dark-primary').removeClass('sidebar-light-primary');
+        $('#navigationBar').addClass('navbar-dark').removeClass('navbar-light');
+        $('.content-wrapper').attr('style', 'background-color: #111');
+        $('.card').attr('style', 'background-color: #212121');
+        $('.main-footer').attr('style', 'background-color: #212121');
+        $('.form-control').attr('style', 'background-color: #212121!important;color:white;border:1px solid #3c3c3c');
+        $('.modal-content').attr('style', 'background-color: #212121!important;');
+        $('.loader-section').attr('style', 'background: #212121!important;');
+        $("#brand-logo").attr("src", "/images/logo-transparent-light.png");
+        localStorage.setItem('darkSwitch', 'dark');
+    } else {
+        document.body.removeAttribute('data-theme');
+        $('#sideBar').addClass('sidebar-light-primary').removeClass('sidebar-dark-primary');
+        $('#navigationBar').removeClass('navbar-dark').addClass('navbar-light');
+        $('.content-wrapper').attr('style', 'background-color: #f4f6f9');
+        $('.card').attr('style', 'background-color: ##ffffff');
+        $('.main-footer').attr('style', 'background-color: #ffffff');
+        $('.form-control').attr('style', 'background-color: #ffffff!important;color:black;border:1px solid #ced4da');
+        $('.modal-content').attr('style', 'background-color: #ffffff!important;');
+        $('.loader-section').attr('style', 'background: #ffffff!important;');
+        $("#brand-logo").attr("src", "/images/logo-transparent-dark.png");
+        localStorage.removeItem('darkSwitch');
+    }
 }

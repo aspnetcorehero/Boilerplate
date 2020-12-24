@@ -4,11 +4,7 @@ using AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Delete;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Update;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetAllCached;
 using AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetById;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Api.Controllers.v1
@@ -21,12 +17,14 @@ namespace AspNetCoreHero.Boilerplate.Api.Controllers.v1
             var brands = await _mediator.Send(new GetAllBrandsCachedQuery());
             return Ok(brands);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var brand = await _mediator.Send(new GetBrandByIdQuery() { Id = id });
             return Ok(brand);
         }
+
         // POST api/<controller>
         [HttpPost]
         public async Task<IActionResult> Post(CreateBrandCommand command)

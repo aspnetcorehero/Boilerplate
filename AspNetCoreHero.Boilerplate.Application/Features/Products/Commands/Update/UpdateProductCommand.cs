@@ -1,5 +1,4 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Exceptions;
-using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Results;
 using MediatR;
 using System.Threading;
@@ -14,15 +13,18 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Upda
         public string Description { get; set; }
         public decimal Rate { get; set; }
         public int BrandId { get; set; }
+
         public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Result<int>>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IProductRepository _productRepository;
+
             public UpdateProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork)
             {
                 _productRepository = productRepository;
                 _unitOfWork = unitOfWork;
             }
+
             public async Task<Result<int>> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
             {
                 var product = await _productRepository.GetByIdAsync(command.Id);

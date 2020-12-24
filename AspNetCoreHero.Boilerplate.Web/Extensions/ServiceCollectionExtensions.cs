@@ -21,8 +21,10 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
         public static void AddMultiLingualSupport(this IServiceCollection services)
         {
             #region Registering ResourcesPath
+
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-            #endregion
+
+            #endregion Registering ResourcesPath
 
             services.AddMvc()
                .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
@@ -45,12 +47,14 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
                 options.SupportedUICultures = cultures;
             });
         }
+
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddPersistenceContexts(configuration);
             services.AddAuthenticationScheme(configuration);
         }
+
         private static void AddAuthenticationScheme(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMvc(o =>
@@ -60,6 +64,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
                 o.Filters.Add(new AuthorizeFilter(policy));
             });
         }
+
         private static void AddPersistenceContexts(this IServiceCollection services, IConfiguration configuration)
         {
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))
@@ -73,7 +78,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
             {
                 services.AddDbContext<IdentityContext>(options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnection")));
                 services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection")));
-
             }
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {

@@ -3,10 +3,6 @@ using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using AspNetCoreHero.Results;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,12 +14,14 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Create
         public string Description { get; set; }
         public decimal Tax { get; set; }
     }
+
     public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, Result<int>>
     {
         private readonly IBrandRepository _brandRepository;
         private readonly IMapper _mapper;
 
         private IUnitOfWork _unitOfWork { get; set; }
+
         public CreateBrandCommandHandler(IBrandRepository brandRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _brandRepository = brandRepository;

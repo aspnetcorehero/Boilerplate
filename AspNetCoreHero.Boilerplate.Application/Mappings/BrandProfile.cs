@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace AspNetCoreHero.Boilerplate.Application.Mappings
 {
-    class BrandProfile : Profile
+    internal class BrandProfile : Profile
     {
         public BrandProfile()
         {

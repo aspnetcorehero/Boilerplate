@@ -136,12 +136,12 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
                     _notyf.Error("Email / Username Not Found.");
                     ModelState.AddModelError(string.Empty, "Email / Username Not Found.");
                 }
-
             }
 
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
         public bool IsValidEmail(string emailaddress)
         {
             try

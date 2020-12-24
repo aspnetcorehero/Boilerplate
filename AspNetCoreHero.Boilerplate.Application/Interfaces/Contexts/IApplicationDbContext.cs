@@ -15,6 +15,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts
         EntityEntry Entry(object entity);
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
         DbSet<Product> Products { get; set; }
     }
 }

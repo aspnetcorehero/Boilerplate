@@ -23,10 +23,12 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages
         public bool IsSuperAdmin { get; set; }
 
         private readonly UserManager<ApplicationUser> _userManager;
+
         public ProfileModel(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
+
         public async Task OnGetAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -42,8 +44,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages
                 IsSuperAdmin = roles.Contains("SuperAdmin");
                 Roles = roles.ToList();
             }
-
         }
+
         public async Task<IActionResult> OnPostActivateUserAsync(string userId)
         {
             if (User.IsInRole("SuperAdmin"))
@@ -56,8 +58,8 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages
                 return RedirectToPage("Profile", new { area = "Identity", userId = userId });
             }
             else return default;
-
         }
+
         public async Task<IActionResult> OnPostDeActivateUserAsync(string userId)
         {
             if (User.IsInRole("SuperAdmin"))
@@ -68,7 +70,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages
                 return RedirectToPage("Profile", new { area = "Identity", userId = userId });
             }
             else return default;
-
         }
     }
 }

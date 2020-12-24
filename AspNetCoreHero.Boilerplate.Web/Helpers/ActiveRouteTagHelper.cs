@@ -29,6 +29,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Helpers
         /// <remarks>Must be <c>null</c> if <see cref="P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route" /> is non-<c>null</c>.</remarks>
         [HtmlAttributeName("asp-controller")]
         public string Controller { get; set; }
+
         [HtmlAttributeName("asp-area")]
         public string Area { get; set; }
 
@@ -129,7 +130,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Helpers
         private void MakeActive(TagHelperOutput output)
         {
             var classAttr = output.Attributes.FirstOrDefault(a => a.Name == "class");
-            
+
             if (classAttr == null)
             {
                 classAttr = new TagHelperAttribute("class", "active");
@@ -137,7 +138,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Helpers
             }
             else if (classAttr.Value == null || classAttr.Value.ToString().IndexOf("active") < 0)
             {
-                if(classAttr.Value.ToString() == "nav-item has-treeview")
+                if (classAttr.Value.ToString() == "nav-item has-treeview")
                 {
                     output.Attributes.SetAttribute("class", classAttr.Value == null
                     ? "menu-open"
@@ -149,7 +150,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Helpers
                     ? "active"
                     : classAttr.Value.ToString() + " active");
                 }
-                
             }
         }
     }

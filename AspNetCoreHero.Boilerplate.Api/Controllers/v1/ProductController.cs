@@ -17,12 +17,14 @@ namespace AspNetCoreHero.Boilerplate.Api.Controllers.v1
             var products = await _mediator.Send(new GetAllProductsQuery(pageNumber, pageSize));
             return Ok(products);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var product = await _mediator.Send(new GetProductByIdQuery() { Id = id });
             return Ok(product);
         }
+
         // POST api/<controller>
         [HttpPost]
         public async Task<IActionResult> Post(CreateProductCommand command)

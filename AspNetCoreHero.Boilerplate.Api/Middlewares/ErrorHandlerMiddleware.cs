@@ -36,10 +36,12 @@ namespace AspNetCoreHero.Boilerplate.Api.Middlewares
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
+
                     case KeyNotFoundException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;

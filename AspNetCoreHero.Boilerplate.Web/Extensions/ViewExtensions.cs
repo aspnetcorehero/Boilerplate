@@ -2,7 +2,5 @@
 {
     public static class ViewExtensions
     {
-
     }
-
 }

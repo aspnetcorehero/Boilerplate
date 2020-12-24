@@ -26,7 +26,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Services
         private readonly IActionContextAccessor _actionContext;
         private readonly IRazorPageActivator _activator;
 
-
         public ViewRenderService(IRazorViewEngine razorViewEngine,
             ITempDataProvider tempDataProvider,
             IServiceProvider serviceProvider,
@@ -41,14 +40,10 @@ namespace AspNetCoreHero.Boilerplate.Web.Services
             _httpContext = httpContext;
             _actionContext = actionContext;
             _activator = activator;
-
         }
-
 
         public async Task<string> RenderViewToStringAsync<T>(string pageName, T model)
         {
-
-
             var actionContext =
                 new ActionContext(
                     _httpContext.HttpContext,
@@ -72,7 +67,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Services
                     HtmlEncoder.Default,
                     new DiagnosticListener("ViewRenderService"));
 
-
                 var viewContext = new ViewContext(
                     actionContext,
                     view,
@@ -88,21 +82,17 @@ namespace AspNetCoreHero.Boilerplate.Web.Services
                     new HtmlHelperOptions()
                 );
 
-
                 var page = (result.Page);
 
                 page.ViewContext = viewContext;
-
 
                 _activator.Activate(page, viewContext);
 
                 await page.ExecuteAsync();
 
-
                 return sw.ToString();
             }
         }
-
 
         private IRazorPage FindPage(ActionContext actionContext, string pageName)
         {

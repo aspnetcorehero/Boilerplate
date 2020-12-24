@@ -41,10 +41,8 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             }
             catch (System.Exception ex)
             {
-
                 throw;
             }
-           
         }
 
         public async Task<int> InsertAsync(Brand brand)

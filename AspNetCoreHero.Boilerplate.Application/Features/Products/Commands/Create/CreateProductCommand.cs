@@ -16,12 +16,14 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Commands.Crea
         public decimal Rate { get; set; }
         public int BrandId { get; set; }
     }
+
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Result<int>>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
 
         private IUnitOfWork _unitOfWork { get; set; }
+
         public CreateProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _productRepository = productRepository;

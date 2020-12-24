@@ -12,7 +12,6 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
     {
         public GetAllProductsCachedQuery()
         {
-
         }
     }
 
@@ -20,6 +19,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Products.Queries.GetAl
     {
         private readonly IProductCacheRepository _productCache;
         private readonly IMapper _mapper;
+
         public GetAllProductsCachedQueryHandler(IProductCacheRepository productCache, IMapper mapper)
         {
             _productCache = productCache;

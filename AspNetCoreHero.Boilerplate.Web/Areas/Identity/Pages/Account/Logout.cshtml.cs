@@ -41,7 +41,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
-
             await _mediator.Send(new AddActivityLogCommand() { userId = _userService.UserId, Action = "Logged Out" });
             await _signInManager.SignOutAsync();
             _notyf.Information("User logged out.");
