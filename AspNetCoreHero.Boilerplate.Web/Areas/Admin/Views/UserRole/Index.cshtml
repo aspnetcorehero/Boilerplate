@@ -1,0 +1,57 @@
+﻿@{
+
+}
+@model AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models.ManageUserRolesViewModel
+<div class="card">
+
+    <div id="viewAll" class="card-body table-responsive">
+        <form asp-controller="UserRole" method="post" asp-action="Update" asp-route-id="@Model.UserId" class="d-inline">
+            <input asp-for="@Model.UserId" type="hidden" />
+            <table class="table table-striped" id="userRolesTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @localizer["RoleName"]
+                        </th>
+                        <th>
+                            @localizer["Status"]
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (int i = 0; i < Model.UserRoles.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                                <input asp-for="@Model.UserRoles[i].RoleName" type="hidden" />
+                                @Model.UserRoles[i].RoleName
+                            </td>
+                            <td>
+                                <div class="form-check m-1">
+                                    <input asp-for="@Model.UserRoles[i].Selected" class="form-check-input" />
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="col-sm-12" style=" padding: 20px 20px 0px 0px">
+                <button type="submit" id="save" class="btn bg-success">
+                    <i class="fa fa-check"></i>
+                    Save
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#userRolesTable").DataTable();
+        });
+    </script>
+}

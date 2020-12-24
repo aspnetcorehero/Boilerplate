@@ -84,7 +84,7 @@
                             <a style='margin-right:16px' asp-route-userId="@user.Id" class="dropdown-item">
                                 <i class="fas fa-user"></i> @localizer["Profile"]
                             </a>
-                            <a style='margin-right:16px' class="dropdown-item">
+                            <a style='margin-right:16px' asp-controller="UserRole" asp-action="Index" asp-route-userId="@user.Id" class="dropdown-item">
                                 <i class="fas fa-wrench"></i> @localizer["Manage Roles"]
                             </a>
                             <a style='margin-right:16px' class="dropdown-item">

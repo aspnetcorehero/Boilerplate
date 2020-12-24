@@ -19,11 +19,13 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public UserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         [Authorize(Policy = Permissions.Users.View)]
         public IActionResult Index()
@@ -79,5 +81,6 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             }
             return default;
         }
+        
     }
 }
