@@ -1,0 +1,19 @@
+﻿@using AspNetCoreHero.Boilerplate.Web.Areas.Admin.Models
+@model RoleViewModel
+<form id="create-form" method="post" asp-area="Admin" asp-controller="Role" asp-route-id="@Model.Id" asp-action="OnPostCreate" onsubmit="return jQueryModalPost(this);">
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">@localizer["Name"]</label>
+        <div class="col-md-9">
+            <input type="text" asp-for="Name" name="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group justify-content-between" style="margin-bottom: 0px !important">
+        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-default close-button" data-dismiss="modal">Cancel</button>
+
+    </div>
+</form>
+<script type="text/javascript" language=javascript>
+    $.validator.unobtrusive.parse(document);
+</script>
