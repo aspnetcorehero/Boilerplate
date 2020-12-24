@@ -21,9 +21,44 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 
         public IQueryable<Brand> Brands => _repository.Entities;
 
+        public async Task DeleteAsync(Brand brand)
+        {
+            await _repository.DeleteAsync(brand);
+            await _distributedCache.RemoveAsync(CacheKeys.BrandCacheKeys.ListKey);
+            await _distributedCache.RemoveAsync(CacheKeys.BrandCacheKeys.GetKey(brand.Id));
+        }
+
+        public async Task<Brand> GetByIdAsync(int brandId)
+        {
+            return await _repository.Entities.Where(p => p.Id == brandId).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Brand>> GetListAsync()
         {
-            return await _repository.Entities.ToListAsync();
+            try
+            {
+                return await _repository.Entities.ToListAsync();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+           
+        }
+
+        public async Task<int> InsertAsync(Brand brand)
+        {
+            await _repository.AddAsync(brand);
+            await _distributedCache.RemoveAsync(CacheKeys.BrandCacheKeys.ListKey);
+            return brand.Id;
+        }
+
+        public async Task UpdateAsync(Brand brand)
+        {
+            await _repository.UpdateAsync(brand);
+            await _distributedCache.RemoveAsync(CacheKeys.BrandCacheKeys.ListKey);
+            await _distributedCache.RemoveAsync(CacheKeys.BrandCacheKeys.GetKey(brand.Id));
         }
     }
 }

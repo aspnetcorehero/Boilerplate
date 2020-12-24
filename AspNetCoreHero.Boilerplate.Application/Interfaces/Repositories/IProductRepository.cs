@@ -11,11 +11,8 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
 
         Task<List<Product>> GetListAsync();
 
-        Task<List<Product>> GetSelectListAsync();
-
         Task<Product> GetByIdAsync(int productId);
 
-        Task<Product> GetDetailsByIdAsync(int productId);
 
         Task<int> InsertAsync(Product product);
 

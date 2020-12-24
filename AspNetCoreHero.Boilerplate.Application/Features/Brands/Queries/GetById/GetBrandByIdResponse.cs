@@ -1,6 +1,6 @@
-﻿namespace AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models
+﻿namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Queries.GetById
 {
-    public class BrandViewModel
+    public class GetBrandByIdResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }

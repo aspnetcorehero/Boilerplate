@@ -3,6 +3,7 @@ using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using AspNetCoreHero.Boilerplate.Infrastructure.CacheKeys;
 using AspNetCoreHero.Extensions.Caching;
+using AspNetCoreHero.ThrowR;
 using Microsoft.Extensions.Caching.Distributed;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,17 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.CacheRepositories
             _distributedCache = distributedCache;
             _brandRepository = brandRepository;
         }
-        public Task<Brand> GetByIdAsync(int brandId)
+        public async Task<Brand> GetByIdAsync(int brandId)
         {
-            throw new NotImplementedException();
+            string cacheKey = BrandCacheKeys.GetKey(brandId);
+            var brand = await _distributedCache.GetAsync<Brand>(cacheKey);
+            if (brand == null)
+            {
+                brand = await _brandRepository.GetByIdAsync(brandId);
+                Throw.Exception.IfNull(brand, "Brand", "No Brand Found");
+                await _distributedCache.SetAsync(cacheKey, brand);
+            }
+            return brand;
         }
 
         public async Task<List<Brand>> GetCachedListAsync()

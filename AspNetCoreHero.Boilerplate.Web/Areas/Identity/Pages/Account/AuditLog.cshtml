@@ -11,6 +11,9 @@
             <thead>
                 <tr>
                     <th>
+                        @localizer["Id"]
+                    </th>
+                    <th>
                         @localizer["Date"]
                     </th>
                     <th>
@@ -32,45 +35,46 @@
             <tbody>
                 @foreach (var user in Model.AuditLogResponses)
                 {
-                    <tr>
-                        <td>
-                            <a>
-                                <small class="badge badge-warning"><i class="far fa-clock"></i> Universal</small> @user.DateTime.ToString("dd/MM/yyyy h:mm:ss tt")
-                            </a>
-                            <br>
-                            <small>
-                                
-                                @{
-                                    DateTime runtimeKnowsThisIsUtc = DateTime.SpecifyKind(
-                    user.DateTime,
-                    DateTimeKind.Utc);
-                                    DateTime localVersion = runtimeKnowsThisIsUtc.ToLocalTime();
-                                }
-                                <small class="badge badge-success"><i class="far fa-clock"></i> Local</small> @localVersion.ToString("dd/MM/yyyy h:mm:ss tt")
-                            </small>
-                            
-                            
-                        </td>
-                        <td>
-                            @user.Type
-                        </td>
-                        <td>
-                            @user.TableName
-                        </td>
-                        <td>
-                            @user.PrimaryKey
-                        </td>
-                        <td>
-                            @user.AffectedColumns
-                        </td>
-                        <td style="float: right;">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-eye">
-                                </i> 
-                                View Details
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @user.Id
+                    </td>
+                    <td>
+                        <a>
+                            <small class="badge badge-warning"><i class="far fa-clock"></i> Universal</small> @user.DateTime.ToString("dd/MM/yyyy h:mm:ss tt")
+                        </a>
+                        <br>
+                        <small>
+
+                            @{
+                                DateTime runtimeKnowsThisIsUtc = DateTime.SpecifyKind(user.DateTime,DateTimeKind.Utc);
+                                DateTime localVersion = runtimeKnowsThisIsUtc.ToLocalTime();
+                            }
+                            <small class="badge badge-success"><i class="far fa-clock"></i> Local</small> @localVersion.ToString("dd/MM/yyyy h:mm:ss tt")
+                        </small>
+
+
+                    </td>
+                    <td>
+                        @user.Type
+                    </td>
+                    <td>
+                        @user.TableName
+                    </td>
+                    <td>
+                        @user.PrimaryKey
+                    </td>
+                    <td>
+                        @user.AffectedColumns
+                    </td>
+                    <td style="float: right;">
+                        <a class="btn btn-primary btn-sm" href="#">
+                            <i class="fas fa-eye">
+                            </i>
+                            View Details
+                        </a>
+                    </td>
+                </tr>
                 }
 
             </tbody>

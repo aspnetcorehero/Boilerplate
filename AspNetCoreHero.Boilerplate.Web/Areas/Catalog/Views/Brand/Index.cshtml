@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = localizer["Brands"];
+    ViewData["Caption"] = localizer["Manage Brands here"];
+}
+@using AspNetCoreHero.Boilerplate.Web.Areas.Catalog.Models
+@model BrandViewModel
+<div class="card">
+    <div class="col-sm-12" style="padding:20px">
+        @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Brands.Create)).Result.Succeeded)
+        {
+            <a onclick="jQueryModalGet('/catalog/brand/OnGetCreateOrEdit','Create Brand')" class="btn bg-success">
+                <i class="fa fa-plus-square"></i> Create
+            </a>
+        }
+
+        <a id="reload" class="btn btn-primary text-white">
+            <i class="fa fas fa-bolt"></i>
+            Reload
+        </a>
+    </div>
+    <div id="viewAll" class="card-body table-responsive">
+
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#brandTable").DataTable();
+            loadData();
+            $('#reload').on('click', function () {
+                loadData();
+            });
+        });
+        function loadData() {
+            $('#viewAll').load('/catalog/brand/LoadAll');
+        }
+    </script>
+}
+

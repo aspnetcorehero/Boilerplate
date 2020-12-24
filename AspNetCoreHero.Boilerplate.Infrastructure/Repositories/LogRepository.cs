@@ -40,7 +40,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 
         public async Task<List<AuditLogResponse>> GetAuditLogsAsync(string userId)
         {
-            var logs = await _repository.Entities.Where(a => a.UserId == userId).OrderByDescending(a => a.DateTime).Take(250).ToListAsync();
+            var logs = await _repository.Entities.Where(a => a.UserId == userId).OrderByDescending(a => a.Id).Take(250).ToListAsync();
             var mappedLogs = _mapper.Map<List<AuditLogResponse>>(logs);
             return mappedLogs;
         }

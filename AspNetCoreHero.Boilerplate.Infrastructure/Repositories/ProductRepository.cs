@@ -33,19 +33,9 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             return await _repository.Entities.Where(p => p.Id == productId).FirstOrDefaultAsync();
         }
 
-        public Task<Product> GetDetailsByIdAsync(int productId)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public async Task<List<Product>> GetListAsync()
         {
             return await _repository.Entities.ToListAsync();
-        }
-
-        public Task<List<Product>> GetSelectListAsync()
-        {
-            throw new System.NotImplementedException();
         }
 
         public async Task<int> InsertAsync(Product product)
