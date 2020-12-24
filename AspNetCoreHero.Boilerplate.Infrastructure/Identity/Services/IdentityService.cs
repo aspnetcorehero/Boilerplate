@@ -55,6 +55,8 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
             var response = new TokenResponse();
             response.Id = user.Id;
             response.JWToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+            response.IssuedOn = jwtSecurityToken.ValidFrom.ToLocalTime();
+            response.ExpiresOn = jwtSecurityToken.ValidTo.ToLocalTime();
             response.Email = user.Email;
             response.UserName = user.UserName;
             var rolesList = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
@@ -98,6 +100,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Identity.Services
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
+                notBefore: DateTime.UtcNow,
                 expires: DateTime.UtcNow.AddMinutes(_jwtSettings.DurationInMinutes),
                 signingCredentials: signingCredentials);
             return jwtSecurityToken;
