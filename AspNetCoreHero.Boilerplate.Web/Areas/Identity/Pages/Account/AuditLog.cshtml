@@ -29,6 +29,10 @@
                         @localizer["Affected Columns"]
                     </th>
                     <th>
+                        @localizer["Old Values"]
+                    </th>
+                    <th>
+                        @localizer["New Values"]
                     </th>
                 </tr>
             </thead>
@@ -47,7 +51,7 @@
                         <small>
 
                             @{
-                                DateTime runtimeKnowsThisIsUtc = DateTime.SpecifyKind(user.DateTime,DateTimeKind.Utc);
+                                DateTime runtimeKnowsThisIsUtc = DateTime.SpecifyKind(user.DateTime, DateTimeKind.Utc);
                                 DateTime localVersion = runtimeKnowsThisIsUtc.ToLocalTime();
                             }
                             <small class="badge badge-success"><i class="far fa-clock"></i> Local</small> @localVersion.ToString("dd/MM/yyyy h:mm:ss tt")
@@ -65,12 +69,11 @@
                     <td>
                         @user.AffectedColumns
                     </td>
-                    <td style="float: right;">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-eye">
-                            </i>
-                            View Details
-                        </a>
+                    <td>
+                        @user.OldValues
+                    </td>
+                    <td>
+                        @user.NewValues
                     </td>
                 </tr>
                 }

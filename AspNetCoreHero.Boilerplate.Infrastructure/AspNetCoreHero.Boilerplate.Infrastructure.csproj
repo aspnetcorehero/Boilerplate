@@ -28,7 +28,4 @@
     <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Application\AspNetCoreHero.Boilerplate.Application.csproj" />
     <ProjectReference Include="..\AspNetCoreHero.Boilerplate.Domain\AspNetCoreHero.Boilerplate.Domain.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\ApplicationDb\" />
-  </ItemGroup>
 </Project>

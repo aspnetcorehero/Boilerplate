@@ -1,9 +1,12 @@
 using AspNetCoreHero.Boilerplate.Application.DTOs;
 using AspNetCoreHero.Boilerplate.Application.Features.ActivityLog.Queries.GetUserLogs;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
+using AspNetCoreHero.Boilerplate.Web.Abstractions;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
@@ -13,11 +16,13 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account
         private readonly IMediator _mediator;
         private readonly IAuthenticatedUserService _userService;
         public List<AuditLogResponse> AuditLogResponses;
+        private IViewRenderService _viewRenderer;
 
-        public AuditLogModel(IMediator mediator, IAuthenticatedUserService userService)
+        public AuditLogModel(IMediator mediator, IAuthenticatedUserService userService, IViewRenderService viewRenderer)
         {
             _mediator = mediator;
             _userService = userService;
+            _viewRenderer = viewRenderer;
         }
 
         public async Task OnGet()
