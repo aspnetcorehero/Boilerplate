@@ -29,8 +29,8 @@ Or, If you are feeling really generous, [Support the Project with a small contri
 It would be great if a few of you could contribute to this project. Here are the points I would love to have some help with.
 
 - Someone to fix typos on this Readme, or prepare a better one. 
-- Someone to add Localizers throghout the MVC Project.
-- Someone to add Arabic Transalations throught the MVC Project. You can find the Dictionary under the Resources Folder in the Web Project.
+- Someone to add Localizers throughout the MVC Project.
+- Someone to add Arabic Transalations throughout the MVC Project. You can find the Dictionary under the Resources Folder in the Web Project.
 - Someone to ensure the code quality.
 
 Let's make this the best .NET 5 Clean Architecture Template.
