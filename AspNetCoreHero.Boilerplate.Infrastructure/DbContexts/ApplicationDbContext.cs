@@ -32,7 +32,6 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.DbContexts
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>().ToList())
             {
-                var entityType = entry.Entity.GetType().Name;
                 switch (entry.State)
                 {
                     case EntityState.Added:
@@ -46,7 +45,14 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.DbContexts
                         break;
                 }
             }
-            return await base.SaveChangesAsync(cancellationToken);
+            if (_authenticatedUser.UserId == null)
+            {
+                return await base.SaveChangesAsync(cancellationToken);
+            }
+            else
+            {
+                return await base.SaveChangesAsync(_authenticatedUser.UserId);
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
