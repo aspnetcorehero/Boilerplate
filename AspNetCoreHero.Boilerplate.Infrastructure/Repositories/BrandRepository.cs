@@ -35,14 +35,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
 
         public async Task<List<Brand>> GetListAsync()
         {
-            try
-            {
-                return await _repository.Entities.ToListAsync();
-            }
-            catch (System.Exception ex)
-            {
-                throw;
-            }
+            return await _repository.Entities.ToListAsync();
         }
 
         public async Task<int> InsertAsync(Brand brand)

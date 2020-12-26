@@ -1,7 +1,7 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.DTOs;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
-using AspNetCoreHero.EntityFrameworkCore.Auditing.Models;
+using AspNetCoreHero.EntityFrameworkCore.AuditTrail.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

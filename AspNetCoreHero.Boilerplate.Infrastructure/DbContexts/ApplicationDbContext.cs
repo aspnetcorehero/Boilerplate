@@ -2,7 +2,7 @@
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Contexts;
 using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
-using AspNetCoreHero.EntityFrameworkCore.Auditing;
+using AspNetCoreHero.EntityFrameworkCore.AuditTrail;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Linq;

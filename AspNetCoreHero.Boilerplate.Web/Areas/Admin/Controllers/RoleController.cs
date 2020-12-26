@@ -21,7 +21,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Areas.Admin.Controllers
             _roleManager = roleManager;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
