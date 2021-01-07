@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Interfaces.CacheRepositories
 {
-    public interface IBrandCacheRepository
+    public interface IProductCacheRepository
     {
-        Task<List<Brand>> GetCachedListAsync();
+        Task<List<Product>> GetCachedListAsync();
 
-        Task<Brand> GetByIdAsync(int brandId);
+        Task<Product> GetByIdAsync(int brandId);
     }
 }
