@@ -32,6 +32,10 @@
                 {
                     <i class="flag-icon flag-icon-fr"></i>
                 }
+                else if (requestCulture.RequestCulture.UICulture.Name == "fa")
+                {
+                    <i class="flag-icon flag-icon-ir"></i>
+                }
                 @requestCulture.RequestCulture.UICulture.NativeName
             }
         </span>
@@ -62,6 +66,10 @@
                     else if (culture.Value == "fr")
                     {
                         <i class="flag-icon flag-icon-fr"></i>
+                    }
+                    else if (culture.Value == "fa")
+                    {
+                        <i class="flag-icon flag-icon-ir"></i>
                     }
 
                     @culture.Text
