@@ -124,19 +124,19 @@
     <value>إلغاء</value>
   </data>
   <data name="Create an Account!" xml:space="preserve">
-    <value>انشئ حساب!</value>
+    <value>انشاء حساب!</value>
   </data>
   <data name="Dark Mode" xml:space="preserve">
-    <value>الوضع الظلام</value>
+    <value>الوضع الليلي</value>
   </data>
   <data name="Default Credentials" xml:space="preserve">
-    <value>افتراضي ثائق التفويض</value>
+    <value>الاعدادات الافتراضية</value>
   </data>
   <data name="Email Address" xml:space="preserve">
-    <value>عنوان البريد الإلكتروني</value>
+    <value>البريد الإلكتروني</value>
   </data>
   <data name="First Name" xml:space="preserve">
-    <value>الاسم الاول</value>
+    <value>الاسم</value>
   </data>
   <data name="Forgot Password?" xml:space="preserve">
     <value>هل نسيت كلمة المرور؟</value>
@@ -148,7 +148,7 @@
     <value>تسجيل الدخول</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>تسجيل خروج</value>
+    <value>تسجيل الخروج</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>جديد</value>
@@ -160,7 +160,7 @@
     <value>الملف الشخصي</value>
   </data>
   <data name="Ready to Leave?" xml:space="preserve">
-    <value>على استعداد لترك؟</value>
+    <value>مستعد للمغادرة ؟</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>تسجيل</value>
@@ -178,6 +178,6 @@
     <value>حفظ</value>
   </data>
   <data name="Select Logout below if you are ready to end your current session." xml:space="preserve">
-    <value>اختر خروج أدناه إذا كنت على استعداد لإنهاء الدورة الحالية الخاصة بك.</value>
+    <value>اختر خروج أدناه إذا كنت على استعداد لإنهاء الجلسة الحالية الخاصة بك.</value>
   </data>
 </root>
