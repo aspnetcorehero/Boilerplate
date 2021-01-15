@@ -9,13 +9,10 @@ namespace AspNetCoreHero.Boilerplate.Web.Permission
 {
     internal class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
     {
-        private UserManager<ApplicationUser> _userManager;
-        private RoleManager<IdentityRole> _roleManager;
-
-        public PermissionAuthorizationHandler(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        
+        public PermissionAuthorizationHandler()
         {
-            _userManager = userManager;
-            _roleManager = roleManager;
+
         }
 
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
@@ -24,22 +21,13 @@ namespace AspNetCoreHero.Boilerplate.Web.Permission
             {
                 return;
             }
-            var user = await _userManager.GetUserAsync(context.User);
-            var userRoleNames = await _userManager.GetRolesAsync(user);
-            var userRoles = _roleManager.Roles.Where(x => userRoleNames.Contains(x.Name));
-            foreach (var role in userRoles)
+             var permissionss = context.User.Claims.Where(x => x.Type == CustomClaimTypes.Permission &&
+                                                             x.Value == requirement.Permission &&
+                                                             x.Issuer == "LOCAL AUTHORITY");
+            if (permissionss.Any())
             {
-                var roleClaims = await _roleManager.GetClaimsAsync(role);
-                var permissions = roleClaims.Where(x => x.Type == CustomClaimTypes.Permission &&
-                                                        x.Value == requirement.Permission &&
-                                                        x.Issuer == "LOCAL AUTHORITY")
-                                            .Select(x => x.Value);
-
-                if (permissions.Any())
-                {
-                    context.Succeed(requirement);
-                    return;
-                }
+                context.Succeed(requirement);
+                return;
             }
         }
     }
