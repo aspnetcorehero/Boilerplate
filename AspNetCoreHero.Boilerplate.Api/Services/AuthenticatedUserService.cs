@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Shared;
 using Microsoft.AspNetCore.Http;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace AspNetCoreHero.Boilerplate.Api.Services
@@ -9,6 +10,7 @@ namespace AspNetCoreHero.Boilerplate.Api.Services
         public AuthenticatedUserService(IHttpContextAccessor httpContextAccessor)
         {
             UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue("uid");
+          
         }
 
         public string UserId { get; }

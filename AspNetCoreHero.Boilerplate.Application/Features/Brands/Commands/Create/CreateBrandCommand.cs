@@ -1,4 +1,5 @@
-﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
+﻿using AspNetCoreHero.Boilerplate.Application.Exceptions;
+using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Domain.Entities.Catalog;
 using AspNetCoreHero.Results;
 using AutoMapper;
@@ -31,6 +32,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Features.Brands.Commands.Create
 
         public async Task<Result<int>> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
         {
+            throw new ApiException("Error");
             var product = _mapper.Map<Brand>(request);
             await _brandRepository.InsertAsync(product);
             await _unitOfWork.Commit(cancellationToken);
