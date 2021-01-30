@@ -11,7 +11,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/aspnetcorehero/Boilerplate">
-    <img src="images/aspnetcoretemplate.png" alt="Logo">
+    <img src="images/boilerplate-logo.png" alt="Logo">
   </a>
 
   <h3 align="center">Clean Architecture Boilerplate</h3>
