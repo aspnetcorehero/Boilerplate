@@ -74,14 +74,14 @@ Clean Architecture Solution Template for ASP.NET Core 5.0. Built with Onion/Hexa
 
 ## Getting Started
 
-An idea to bring together the best and essential practices / pacakges of ASP.NET Core 5.0 along with Clean Hexagonal Architecture that can be a right fit for small/mid and enterprise level solutions.
-How easy would it be if you are able to run a single line of CLI command on your Console and you get a complete implementation in no time? That's the exact vision I have while building this full fledged Boilerplate template.
+An idea to bring together the best and essential practices / packages of ASP.NET Core 5.0 along with Clean Hexagonal Architecture that can be a right fit for small/mid and enterprise level solutions.
+How easy would it be if you are able to run a single line of CLI command on your Console and you get a complete implementation in no time? That's the exact vision I have while building this full-fledged Boilerplate template.
 
 ### Prerequisites
 
 -   Make sure you are running on the latest .NET 5 SDK (SDK 5.0 and above only). [Get the latest one here.](https://dotnet.microsoft.com/download/dotnet/5.0)
 
--   Visual Studio 2019 (v16.8+) ( You can check out my Installation Guide of [Visual Studio 2019 Community](https://codewithmukesh.com/blog/install-visual-studio-2019-community/) which is completely Free to use.) Make sure that ASP.NET and web development workload is installed.
+-   Visual Studio 2019 (v16.8+) (You can check out my Installation Guide of [Visual Studio 2019 Community](https://codewithmukesh.com/blog/install-visual-studio-2019-community/) which is completely Free to use.) Make sure that ASP.NET and web development workload is installed.
 
 -   Install the latest [.NET & EF CLI Tools](https://docs.microsoft.com/en-us/ef/core/cli/dotnet) by using this command :
 
@@ -138,14 +138,14 @@ See the [open issues](issues-url) for a list of proposed features (and known iss
 
 -   ~~Fix typos on this Readme, or prepare a better one.~~
 -   Add Localizers throughout the MVC Project.
--   Add Arabic Transalations throughout the MVC Project. You can find the Dictionary under the Resources Folder in the Web Project.
+-   Add Arabic Translations throughout the MVC Project. You can find the Dictionary under the Resources Folder in the Web Project.
 -   Ensure the code quality.
 
 Let's make this the best .NET 5 Clean Architecture Template.
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -172,7 +172,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Has this Project helped you learn something New? or Helped you at work? Do Consider Supporting. Here are a few ways by which you can support.
 
 -   Leave a star! ⭐️
--   Recommend this awesome project to your colleages.
+-   Recommend this awesome project to your colleagues.
 -   Do consider endorsing me on LinkedIn for ASP.NET Core - [Connect via LinkedIn](linkedin-url)
 -   Or, If you want to support this project on the long run, consider buying me a coffee.
 
