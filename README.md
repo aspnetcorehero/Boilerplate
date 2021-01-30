@@ -45,7 +45,7 @@
         <li><a href="#features-included">Features Included</a></li>
         <ul>
             <li><a href="#aspnet-core-50-mvc-project">ASP.NET Core 5.0 MVC Project</a></li>
-            <li><a href="aspnet-core-50-webapi">ASP.NET Core 5.0 WebAPI</a></li>
+            <li><a href="#aspnet-core-50-webapi">ASP.NET Core 5.0 WebAPI</a></li>
         </ul>
       </ul>
     </li>
