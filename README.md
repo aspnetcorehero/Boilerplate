@@ -136,7 +136,7 @@ How easy would it be if you are able to run a single line of CLI command on your
 
 See the [open issues](issues-url) for a list of proposed features (and known issues).
 
--   Fix typos on this Readme, or prepare a better one.
+-   ~~Fix typos on this Readme, or prepare a better one.~~
 -   Add Localizers throughout the MVC Project.
 -   Add Arabic Transalations throughout the MVC Project. You can find the Dictionary under the Resources Folder in the Web Project.
 -   Ensure the code quality.
