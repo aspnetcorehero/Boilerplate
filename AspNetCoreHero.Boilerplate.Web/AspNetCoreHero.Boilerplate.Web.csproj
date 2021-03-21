@@ -34,6 +34,7 @@
     <Folder Include="Areas\Settings\Views\" />
     <Folder Include="Log\" />
     <Folder Include="Views\Shared\Components\Menu\" />
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
   <ItemGroup>
