@@ -1,8 +1,10 @@
 ﻿using AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories;
 using AspNetCoreHero.Boilerplate.Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
@@ -37,9 +39,10 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<T> FindById(int id)
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
         {
-            return await _dbContext.Set<T>().FindAsync(id);
+            return _dbContext.Set<T>()
+                .Where(expression);
         }
 
         public async Task<List<T>> GetPagedReponseAsync(int pageNumber, int pageSize)

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
@@ -8,7 +10,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
     {
         IQueryable<T> Entities { get; }
 
-        Task<T> FindById(int id);
+        IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);
 
         Task<List<T>> FindAll();
 
