@@ -13,10 +13,10 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
     public class LogRepository : ILogRepository
     {
         private readonly IMapper _mapper;
-        private readonly IRepositoryAsync<Audit> _repository;
+        private readonly IRepositoryBase<Audit> _repository;
         private readonly IDateTimeService _dateTimeService;
 
-        public LogRepository(IRepositoryAsync<Audit> repository, IMapper mapper, IDateTimeService dateTimeService)
+        public LogRepository(IRepositoryBase<Audit> repository, IMapper mapper, IDateTimeService dateTimeService)
         {
             _repository = repository;
             _mapper = mapper;
@@ -31,7 +31,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
                 UserId = userId,
                 DateTime = _dateTimeService.NowUtc
             };
-            await _repository.AddAsync(audit);
+            await _repository.Create(audit);
         }
 
         public async Task<List<AuditLogResponse>> GetAuditLogsAsync(string userId)
