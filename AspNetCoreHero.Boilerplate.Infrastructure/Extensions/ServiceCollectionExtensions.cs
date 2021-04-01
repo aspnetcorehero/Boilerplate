@@ -23,7 +23,8 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Extensions
         {
             #region Repositories
 
-            services.AddTransient(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+            services.AddTransient(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductCacheRepository, ProductCacheRepository>();
             services.AddTransient<IBrandRepository, BrandRepository>();
