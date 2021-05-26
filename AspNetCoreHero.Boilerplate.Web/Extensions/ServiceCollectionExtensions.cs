@@ -43,6 +43,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
                     new CultureInfo("fr"),
                     new CultureInfo("fa"),
                     new CultureInfo("pt-BR"),
+                    new CultureInfo("tr"),
                 };
                 options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
                 options.SupportedCultures = cultures;
