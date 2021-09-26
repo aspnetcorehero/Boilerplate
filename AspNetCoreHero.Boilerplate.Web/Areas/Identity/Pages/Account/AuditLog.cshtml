@@ -2,37 +2,38 @@
 @model AspNetCoreHero.Boilerplate.Web.Areas.Identity.Pages.Account.AuditLogModel
 
 @{
-    ViewData["Title"] = localizer["Audit Log"];
-    ViewData["Caption"] = localizer["View your Recent 250 Logs here"];
+    ViewData["Title"] = localizer.GetLocalizedHtmlString("Audit Log");
+    ViewData["Caption"] = localizer.GetLocalizedHtmlString("View your Recent 250 Logs here");
 }
+@inject AspNetCoreHero.Boilerplate.Web.Services.SharedResourceLocalizer localizer;
 <div class="card">
     <div id="viewAll" class="card-body table-responsive">
         <table class="table table-striped" id="logTable">
             <thead>
                 <tr>
                     <th>
-                        @localizer["Id"]
+                        @localizer.GetLocalizedHtmlString("Id")
                     </th>
                     <th>
-                        @localizer["Date"]
+                        @localizer.GetLocalizedHtmlString("Date")
                     </th>
                     <th>
-                        @localizer["Action"]
+                        @localizer.GetLocalizedHtmlString("Action")
                     </th>
                     <th>
-                        @localizer["Module"]
+                        @localizer.GetLocalizedHtmlString("Module")
                     </th>
                     <th>
-                        @localizer["Key"]
+                        @localizer.GetLocalizedHtmlString("Key")
                     </th>
                     <th>
-                        @localizer["Affected Columns"]
+                        @localizer.GetLocalizedHtmlString("Affected Columns")
                     </th>
                     <th>
-                        @localizer["Old Values"]
+                        @localizer.GetLocalizedHtmlString("Old Values")
                     </th>
                     <th>
-                        @localizer["New Values"]
+                        @localizer.GetLocalizedHtmlString("New Values")
                     </th>
                 </tr>
             </thead>

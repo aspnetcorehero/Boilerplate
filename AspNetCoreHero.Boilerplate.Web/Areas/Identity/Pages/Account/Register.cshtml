@@ -5,6 +5,7 @@
     ViewData["Title"] = "Register";
     Layout = null;
 }
+@inject AspNetCoreHero.Boilerplate.Web.Services.SharedResourceLocalizer localizer;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,7 @@
         <ul class="navbar-nav">
             <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="darkSwitch">
-                <label class="custom-control-label" style="font-weight:400" for="darkSwitch">@localizer["Dark Mode"]</label>
+                <label class="custom-control-label" style="font-weight:400" for="darkSwitch">@localizer.GetLocalizedHtmlString("Dark Mode")</label>
             </div>
         </ul>
     </nav>
@@ -46,36 +47,36 @@
                                 <div class="col-lg-7">
                                     <div class="p-5">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">@localizer["Register"]</h1>
+                                            <h1 class="h4 text-gray-900 mb-4">@localizer.GetLocalizedHtmlString("Register")</h1>
                                         </div>
                                         <form class="user" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                                             <small><div asp-validation-summary="All" class="text-danger"></div></small>
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input asp-for="Input.FirstName" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="@localizer["First Name"]">
+                                                    <input asp-for="Input.FirstName" type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="@localizer.GetLocalizedHtmlString("First Name")">
                                                     <small><span asp-validation-for="Input.FirstName" class="text-danger"></span></small>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <input asp-for="Input.LastName" type="text" class="form-control form-control-user" id="exampleLastName" placeholder="@localizer["Last Name"]">
+                                                    <input asp-for="Input.LastName" type="text" class="form-control form-control-user" id="exampleLastName" placeholder="@localizer.GetLocalizedHtmlString("Last Name")">
                                                     <small><span asp-validation-for="Input.LastName" class="text-danger"></span></small>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <input asp-for="Input.Email" type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="@localizer["Email Address"]">
+                                                <input asp-for="Input.Email" type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="@localizer.GetLocalizedHtmlString("Email Address")">
                                                 <small><span asp-validation-for="Input.Email" class="text-danger"></span></small>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input asp-for="Input.Password" autocomplete="off" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="@localizer["Password"]">
+                                                    <input asp-for="Input.Password" autocomplete="off" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="@localizer.GetLocalizedHtmlString("Password")">
                                                     <small><span asp-validation-for="Input.Password" class="text-danger"></span></small>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <input asp-for="Input.ConfirmPassword" autocomplete="off" type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="@localizer["Repeat Password"]">
+                                                    <input asp-for="Input.ConfirmPassword" autocomplete="off" type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="@localizer.GetLocalizedHtmlString("Repeat Password")">
                                                     <small><span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span></small>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                @localizer["Register Account"]
+                                                @localizer.GetLocalizedHtmlString("Register Account")
                                             </button>
                                         </form>
                                         <script type="text/javascript" language=javascript>
@@ -83,10 +84,10 @@
                                         </script>
                                         <hr>
                                         <div class="text-center">
-                                            <a class="small" asp-area="Identity" asp-page="/account/forgotpassword"> @localizer["Forgot Password?"]</a>
+                                            <a class="small" asp-area="Identity" asp-page="/account/forgotpassword"> @localizer.GetLocalizedHtmlString("Forgot Password?")</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small" asp-area="Identity" asp-page="/account/login"> @localizer["Already have an account? Login!"]</a>
+                                            <a class="small" asp-area="Identity" asp-page="/account/login"> @localizer.GetLocalizedHtmlString("Already have an account? Login!")</a>
                                         </div>
                                     </div>
                                 </div>
