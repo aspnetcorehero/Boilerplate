@@ -21,7 +21,7 @@ namespace AspNetCoreHero.Boilerplate.Web.Extensions
         public static void AddMultiLingualSupport(this IServiceCollection services)
         {
             #region Registering ResourcesPath
-
+            services.AddSingleton<SharedResourceLocalizer>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             #endregion Registering ResourcesPath

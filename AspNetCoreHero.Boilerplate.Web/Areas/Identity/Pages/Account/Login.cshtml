@@ -5,6 +5,7 @@
     Layout = null;
 }
 @using AspNetCoreHero.Boilerplate.Web.Views.Shared.Components.Culture;
+@inject AspNetCoreHero.Boilerplate.Web.Services.SharedResourceLocalizer localizer;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,7 @@
         <ul class="navbar-nav">
             <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="darkSwitch">
-                <label class="custom-control-label" style="font-weight:400" for="darkSwitch">@localizer["Dark Mode"]</label>
+                <label class="custom-control-label" style="font-weight:400" for="darkSwitch">@localizer.GetLocalizedHtmlString("Dark Mode")</label>
             </divv>
         </ul>
     </nav>
@@ -46,11 +47,11 @@
                                 <div class="col-lg-6">
                                     <div style="padding:10rem 3rem 10rem 3rem !important;">
                                         <div class="text-center">
-                                            <h1 class="h4 text-gray-900 mb-4">@localizer["Login"]</h1>
+                                            <h1 class="h4 text-gray-900 mb-4">@localizer.GetLocalizedHtmlString("Login")</h1>
                                         </div>
                                         <form class="user" id="account" method="post">
                                             <div class="form-group">
-                                                <input asp-for="Input.Email" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                                <input asp-for="Input.Email" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your email...">
                                                 <small><span asp-validation-for="Input.Email" class="text-danger"></span></small>
                                             </div>
                                             <div class="form-group">
@@ -60,11 +61,11 @@
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox small">
                                                     <input asp-for="Input.RememberMe" type="checkbox" class="custom-control-input" id="customCheck">
-                                                    <label class="custom-control-label" for="customCheck">@localizer["Remember Me"]</label>
+                                                    <label class="custom-control-label" for="customCheck">@localizer.GetLocalizedHtmlString("Remember Me")</label>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                @localizer["Login"]
+                                                @localizer.GetLocalizedHtmlString("Login")
                                             </button>
                                             @*<hr>
                                                 <a class="btn btn-google btn-user btn-block">
@@ -76,10 +77,10 @@
                                         </form>
                                         <hr>
                                         <div class="text-center">
-                                            <a asp-area="Identity" asp-page="/Account/forgotpassword" class="small">@localizer["Forgot Password?"]</a>
+                                            <a asp-area="Identity" asp-page="/Account/forgotpassword" class="small">@localizer.GetLocalizedHtmlString("Forgot Password?")</a>
                                         </div>
                                         <div class="text-center">
-                                            <a asp-area="Identity" asp-page="/Account/register" class="small">@localizer["Create an Account!"]</a>
+                                            <a asp-area="Identity" asp-page="/Account/register" class="small">@localizer.GetLocalizedHtmlString("Create an Account!")</a>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +93,7 @@
                 <div class="col-xl-10 col-lg-12 col-md-9">
                     <div class="card">
                         <div class="card-header py-3">
-                            <h6 class="m-0 text-secondary">@localizer["Default Credentials"]</h6>
+                            <h6 class="m-0 text-secondary">@localizer.GetLocalizedHtmlString("Default Credentials")</h6>
                         </div>
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
