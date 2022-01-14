@@ -12,7 +12,7 @@ namespace AspNetCoreHero.Boilerplate.Application.Interfaces.Repositories
 
         Task<List<T>> GetAllAsync();
 
-        Task<List<T>> GetPagedReponseAsync(int pageNumber, int pageSize);
+        Task<List<T>> GetPagedResponseAsync(int pageNumber, int pageSize);
 
         Task<T> AddAsync(T entity);
 
