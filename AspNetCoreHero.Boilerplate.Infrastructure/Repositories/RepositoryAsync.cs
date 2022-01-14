@@ -42,7 +42,7 @@ namespace AspNetCoreHero.Boilerplate.Infrastructure.Repositories
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
-        public async Task<List<T>> GetPagedReponseAsync(int pageNumber, int pageSize)
+        public async Task<List<T>> GetPagedResponseAsync(int pageNumber, int pageSize)
         {
             return await _dbContext
                 .Set<T>()
